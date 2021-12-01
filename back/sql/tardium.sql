@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2021 a las 10:43:55
+-- Tiempo de generación: 01-12-2021 a las 10:54:08
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -42,7 +42,8 @@ INSERT INTO `accounts` (`id_user`, `username`, `email`, `password`) VALUES
 (1, 'user1', 'user1@gmail.com', 'user1'),
 (2, 'user2', 'user2@gmail.com', 'user2'),
 (3, 'user3', 'user3@gmail.com', 'user3'),
-(4, 'user4', 'user4@gmail.com', 'user4');
+(4, 'user4', 'user4@gmail.com', 'user4'),
+(6, 'user6', 'a@gmail.com', 'affec3b64cf90492377a8114c86fc093');
 
 -- --------------------------------------------------------
 
@@ -102,7 +103,7 @@ ALTER TABLE `films`
 -- AUTO_INCREMENT de la tabla `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id_user` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
