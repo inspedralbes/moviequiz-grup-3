@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2021 a las 10:54:08
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Dec 02, 2021 at 05:22 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,37 +18,37 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tardium`
+-- Database: `tardium`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `accounts`
+-- Table structure for table `accounts`
 --
 
 CREATE TABLE `accounts` (
   `id_user` int(9) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL
+  `password` varchar(32) NOT NULL,
+  `score` int(9) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `accounts`
+-- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id_user`, `username`, `email`, `password`) VALUES
-(1, 'user1', 'user1@gmail.com', 'user1'),
-(2, 'user2', 'user2@gmail.com', 'user2'),
-(3, 'user3', 'user3@gmail.com', 'user3'),
-(4, 'user4', 'user4@gmail.com', 'user4'),
-(6, 'user6', 'a@gmail.com', 'affec3b64cf90492377a8114c86fc093');
+INSERT INTO `accounts` (`id_user`, `username`, `email`, `password`, `score`) VALUES
+(1, 'user1', 'user1@gmail.com', 'user1', 0),
+(2, 'user2', 'user2@gmail.com', 'user2', 0),
+(3, 'user3', 'user3@gmail.com', 'user3', 0),
+(4, 'user4', 'user4@gmail.com', 'user4', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `feedbacks`
+-- Table structure for table `feedbacks`
 --
 
 CREATE TABLE `feedbacks` (
@@ -61,7 +61,7 @@ CREATE TABLE `feedbacks` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `films`
+-- Table structure for table `films`
 --
 
 CREATE TABLE `films` (
@@ -73,34 +73,34 @@ CREATE TABLE `films` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `films`
+-- Dumping data for table `films`
 --
 
 INSERT INTO `films` (`id_film`, `title`, `year`, `rating`, `poster`) VALUES
 (15, 'Cars', 2005, 4.5, 'www.images.com/cars');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `accounts`
+-- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
   ADD UNIQUE KEY `id` (`id_user`);
 
 --
--- Indices de la tabla `films`
+-- Indexes for table `films`
 --
 ALTER TABLE `films`
   ADD UNIQUE KEY `id_film` (`id_film`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `accounts`
+-- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `id_user` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
