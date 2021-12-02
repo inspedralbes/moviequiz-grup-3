@@ -17,6 +17,6 @@ function Login() {
     { method: 'POST', body: userData})
         .then(res => res.json())
         .then(data => {
-            console.log(data.email);
+            console.log(data);
         });
 }
