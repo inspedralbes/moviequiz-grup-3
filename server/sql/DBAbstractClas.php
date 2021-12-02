@@ -1,7 +1,8 @@
 <?php
 
-abstract class DBAbstractModel {
+abstract class DBAbstractClass {
 
+    //
     private static $db_host = "localhost";
     private static $db_user = "root";
     private static $db_pass = "";
@@ -29,18 +30,18 @@ abstract class DBAbstractModel {
     }
 
     protected function single_query() {
-    $this->open_conn();
-    $this->conn->query($this->query);
-    $this->close_conn();
+        $this->open_conn();
+        $this->conn->query($this->query);
+        $this->close_conn();
     }
 
     protected function multiple_query() {
-    $this->open_conn();
-    $result = $this->conn->query($this->query);
-    for ($i=0;$i<$result->num_rows;$i++)
-        $this->rows[$i]=$result->fetch_assoc();
-    $result->close();
-    $this->close_conn();
+        $this->open_conn();
+        $result = $this->conn->query($this->query);
+        for ($i=0;$i<$result->num_rows;$i++)
+            $this->rows[$i]=$result->fetch_assoc();
+        $result->close();
+        $this->close_conn();
     }
 }
 
