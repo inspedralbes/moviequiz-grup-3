@@ -3,7 +3,7 @@ let passwordInput = document.getElementById("password");
 let loginButton = document.getElementById("loginButton");
 
 const path = "login.php";
-const userData = new FormData();
+let userData = new FormData();
 
 loginButton.addEventListener('click', () => {
     Login();
