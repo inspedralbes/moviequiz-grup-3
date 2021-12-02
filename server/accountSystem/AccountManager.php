@@ -74,14 +74,17 @@ class AccountManager extends DBConnection{
     {
         // TODO: Implement select() method.
         /*========We select the account we want==========*/
-        $this->query="SELECT * FROM accounts WHERE (email='{$this->email}') AND (password='{$this->password}');";
+        $this->query="SELECT * FROM accounts WHERE email='{$this->email}';";
         $this->multiple_query();
         return $this->rows;
     }
 
     protected function insert()
     {
-        // TODO: Implement insert() method.
+        $passwordHashed = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->query="INSERT INTO accounts (username, email, password)
+                      VALUES('{$this->username}', '{$this->email}', '{$passwordHashed}');";
+        $this->single_query();
     }
 
     protected function delete()
@@ -90,7 +93,25 @@ class AccountManager extends DBConnection{
     }
     public function LogIn(){
         $data = $this->select();
-        return $data;
+        if (password_verify($this->password, $data[0]['password'])) {
+            return $data;
+        }
+        else{
+            return array("Correct"=>$data[0]['password'], "Sent"=>$this->password);
+            //return array("Exito" => false);
+        }
+    }
+    public function Register(){
+        //$data = $this->select();
+        $this->insert();
+        return array("Error" => "???");
+        /*if ($data == false) {
+
+            return array("Error" => false);
+        }
+        else{
+            return array("Error" => true);
+        }*/
     }
 }
 ?>
