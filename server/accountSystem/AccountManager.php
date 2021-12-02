@@ -8,7 +8,7 @@ class AccountManager extends DBConnection{
     private $password = "";
 
     function __construct() {
-        /*========We set the database we will acces==========*/
+        /*========We set the database we will access==========*/
         $this->db_name = "tardium";
     }
     public function __toString(): string
@@ -74,7 +74,7 @@ class AccountManager extends DBConnection{
     {
         // TODO: Implement select() method.
         /*========We select the account we want==========*/
-        $this->query="SELECT * FROM accounts WHERE email='" .$this->email."'";
+        $this->query="SELECT * FROM accounts WHERE (email='{$this->email}') AND (password='{$this->password}');";
         $this->multiple_query();
         return $this->rows;
     }
