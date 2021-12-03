@@ -14,7 +14,7 @@ abstract class DBConnection{
     abstract protected function selectAll();
     abstract protected function select();
     abstract protected function insert();
-    //abstract protected function update();
+    abstract protected function update();
     abstract protected function delete();
 
     private function open_conn() {

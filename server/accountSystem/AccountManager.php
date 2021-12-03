@@ -1,15 +1,25 @@
 <?php
-require_once(__DIR__."/DBConnection.php");
+require_once(__DIR__."/../DBConnection.php");
 
 class AccountManager extends DBConnection{
 
-    private $username = "";
-    private $email = "";
-    private $password = "";
+    private $uid = null;
+    private $username = null;
+    private $email = null;
+    private $password = null;
+    private $score = null;
+    private $imgPath = null;
 
     function __construct() {
         /*========We set the database we will access==========*/
         $this->db_name = "tardium";
+        if(isset($_SESSION["uid"]))
+        {
+            $this->setUid($_SESSION['uid']);
+            $this->setUsername($_SESSION['username']);
+            $this->setScore($_SESSION['score']);
+            $this->setImgPath($_SESSION['imgPath']);
+        }
     }
     public function __toString(): string
     {
@@ -31,6 +41,22 @@ class AccountManager extends DBConnection{
     public function setUsername(string $username): void
     {
         $this->username = $username;
+    }
+
+    /**
+     * @return null
+     */
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    /**
+     * @param null $uid
+     */
+    public function setUid($uid): void
+    {
+        $this->uid = $uid;
     }
 
     /**
@@ -65,6 +91,38 @@ class AccountManager extends DBConnection{
         $this->password = $password;
     }
 
+    /**
+     * @return null
+     */
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    /**
+     * @param null $score
+     */
+    public function setScore($score): void
+    {
+        $this->score = $score;
+    }
+
+    /**
+     * @return null
+     */
+    public function getImgPath()
+    {
+        return $this->imgPath;
+    }
+
+    /**
+     * @param null $imgPath
+     */
+    public function setImgPath($imgPath): void
+    {
+        $this->imgPath = $imgPath;
+    }
+
     protected function selectAll()
     {
         // TODO: Implement selectAll() method.
@@ -87,13 +145,29 @@ class AccountManager extends DBConnection{
         $this->single_query();
     }
 
+    protected function update()
+    {
+        // TODO: Implement selectAll() method.
+    }
+
     protected function delete()
     {
         // TODO: Implement delete() method.
     }
+
     public function LogIn(){
         $data = $this->select();
         if (password_verify($this->password, $data[0]['password'])) {
+            // TODO: Add info into a SESSION variable.
+            session_start();
+            $this->setUid($data[0]['id']);
+            $this->setUsername($data[0]['username']);
+            $this->setScore($data[0]['score']);
+            $this->setImgPath($data[0]['imgPath']);
+            $_SESSION["uid"] = $this->getUid();
+            $_SESSION["username"] = $this->getUsername();
+            $_SESSION["score"] = $this->getScore();
+            $_SESSION["imgPath"] = $this->getImgPath();
             return $data;
         }
         else{
@@ -113,5 +187,15 @@ class AccountManager extends DBConnection{
             return array("Error" => true);
         }*/
     }
+    public function LogOut()
+    {
+        session_start();
+        $_SESSION = array();
+        session_destroy();
+        //header('Location: login.html');
+    }
+
+
+
 }
 ?>

@@ -12,7 +12,7 @@
     $AccountManager->setUsername($username);
     $AccountManager->setEmail($email);
     $AccountManager->setPassword($password);
-    /*========We call the database to recive the account==========*/
+    /*========We call the database to receive the account==========*/
     $data = $AccountManager->Register();
 
 ?>

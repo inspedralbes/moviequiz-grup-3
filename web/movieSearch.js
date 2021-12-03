@@ -60,14 +60,24 @@ searchButton.addEventListener(`click`,()=>{
             btn.classList.add("btn","waves-effect", "waves-light", "red", "lighten-1");
             btn.innerText = "Afegir pelicula";
             btn.addEventListener("click",function(){
-                let myObject = {
+                /*let myObject = {
                     id : movie.imdbID,
                     title :  movie.Title,
                     year : movie.Year,
                     imgpath : movie.Poster
-                }
-                    JSON.stringify(myObject);
-                    console.log(JSON.stringify(myObject));
+                }*/
+                let movieData = new FormData();
+                movieData.append('id', movie.imdbID);
+                movieData.append('title', movie.Title);
+                movieData.append('year', movie.Year);
+                movieData.append('imgPath', movie.Poster);
+                fetch("http://localhost/web/addMovie.php",
+                    { method: 'POST', body: movieData })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    });
+                    //console.log(JSON.stringify(myObject));
                 });
             infoMovie.innerHTML = "WIP";
 
