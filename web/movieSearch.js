@@ -55,12 +55,26 @@ searchButton.addEventListener(`click`,()=>{
             let infoMovieType = document.createElement('blockquote');
             infoMovieType.innerHTML = "<b>Type: </b>"+movie.Type;
             let infoMovie = document.createElement('p');
+
+            let btn = document.createElement('button');
+            btn.classList.add("btn","waves-effect", "waves-light", "red", "lighten-1");
+            btn.innerText = "Afegir pelicula";
+            btn.addEventListener("click",function(){
+                let myObject = {
+                    id : movie.imdbID,
+                    title :  movie.Title,
+                    year : movie.Year,
+                    imgpath : movie.Poster
+                }
+                    JSON.stringify(myObject);
+                    console.log(JSON.stringify(myObject));
+                });
             infoMovie.innerHTML = "WIP";
 
             /////* APPENDS */////
             //card-reveal appends
             movieTitleReveal.append(iconReveal);
-            cardReveal.append(movieTitleReveal,infoMovieYear,infoMovieType,infoMovie);
+            cardReveal.append(movieTitleReveal,infoMovieYear,infoMovieType,btn, infoMovie);
             //card-content appends
             movieTitleContent.append(iconContent);
             cardContent.append(movieTitleContent);
