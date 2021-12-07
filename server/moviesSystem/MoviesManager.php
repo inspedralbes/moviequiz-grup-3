@@ -6,7 +6,7 @@ class MoviesManager extends DBConnection{
     private $mid = null;
     private $title = null;
     private $year = null;
-    private $imgPath = null;
+    private $img_path = null;
     private $rating = null;
 
     public function  __construct()
@@ -65,17 +65,17 @@ class MoviesManager extends DBConnection{
     /**
      * @return null
      */
-    public function getImgPath()
+    public function getimg_path()
     {
-        return $this->imgPath;
+        return $this->img_path;
     }
 
     /**
-     * @param null $imgPath
+     * @param null $img_path
      */
-    public function setImgPath($imgPath): void
+    public function setimg_path($img_path): void
     {
-        $this->imgPath = $imgPath;
+        $this->img_path = $img_path;
     }
 
     /**
@@ -111,8 +111,8 @@ class MoviesManager extends DBConnection{
     protected function insert()
     {
         // TODO: Implement insert() method.
-        $this->query="INSERT INTO movies (id_movie, title, year, rating, imgPath)
-                      VALUES('{$this->mid}', '{$this->title}', '{$this->year}', '0', '{$this->imgPath}');";
+        $this->query="INSERT INTO movies (id_movie, title, year, rating, img_path)
+                      VALUES('{$this->mid}', '{$this->title}', '{$this->year}', '0', '{$this->img_path}');";
         $this->single_query();
     }
 

@@ -11,12 +11,6 @@ abstract class DBConnection{
 
     private $conn;
 
-    abstract protected function selectAll();
-    abstract protected function select();
-    abstract protected function insert();
-    abstract protected function update();
-    abstract protected function delete();
-
     private function open_conn() {
         $this->conn = new mysqli (self::$db_host, self::$db_user, self::$db_pass, $this->db_name);
     }
@@ -42,5 +36,3 @@ abstract class DBConnection{
         $this->close_conn();
     }
 }
-
-?>

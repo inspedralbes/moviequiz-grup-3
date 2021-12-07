@@ -1,14 +1,15 @@
 <?php
 require_once(__DIR__."/../DBConnection.php");
+require_once(__DIR__."/../IAccounts.php");
 
-class AccountManager extends DBConnection{
+class AccountManager extends DBConnection {
 
     private $uid = null;
     private $username = null;
     private $email = null;
     private $password = null;
     private $score = null;
-    private $imgPath = null;
+    private $img_path = null;
 
     function __construct() {
         /*========We set the database we will access==========*/
@@ -198,4 +199,3 @@ class AccountManager extends DBConnection{
 
 
 }
-?>
