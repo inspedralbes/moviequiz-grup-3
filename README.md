@@ -9,8 +9,8 @@ Un cop comenceu heu de canviar aquesta explicació amb la corresponent al vostre
 
 
 # Aquest fitxer ha de contenir com a mínim:
- * Nom dels integrants
- * Nom del projecte
+ * Albert Chao, Eric Clemente, Arnau Orts
+ * Movie Quiz 3
  * Petita descripció
- * URL de producció (quan la tingueu)
+ * moviequiz3.alumnes.inspedralbes.cat
  * Estat: (explicació de en quin punt està)

@@ -2,11 +2,13 @@
     header('Access-Control-Allow-Origin: *');
     header('Content-type: application/json');
     require_once(__DIR__ . "/../../server/accountSystem/AccountManager.php");
+    /*========We create the AccountManager Object==========*/
+    $AccountManager = new AccountManager();
+    
     /*========Save the info we got from POST==========*/
     $email = $_POST["email"];
     $password = $_POST["password"];
-    /*========We create the AccountManager Object==========*/
-    $AccountManager = new AccountManager();
+
     /*========Set values to AccountManager==========*/
     $AccountManager->setEmail($email);
     $AccountManager->setPassword($password);
@@ -26,6 +28,13 @@
             return array("login" => "failed");
         }
     }
-
-
+/*
+    if(isset($_SESSION["uid"]))
+    {
+        $this->setUid($_SESSION['uid']);
+        $this->setUsername($_SESSION['username']);
+        $this->setScore($_SESSION['score']);
+        $this->setImgPath($_SESSION['imgPath']);
+    }
+*/
 ?>

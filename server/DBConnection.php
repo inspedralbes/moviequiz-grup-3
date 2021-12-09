@@ -11,10 +11,10 @@ abstract class DBConnection{
 
     private $conn;
 
-    protected abstract function select();
-    protected abstract function insert();
-    protected abstract function delete();
-    protected abstract function update();
+    public abstract function select();
+    public abstract function insert();
+    public abstract function delete();
+    public abstract function update();
 
     protected $error = array("error" => true);
     protected $allOk = array("error" => false);

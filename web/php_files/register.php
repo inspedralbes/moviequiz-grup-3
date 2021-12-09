@@ -6,14 +6,18 @@
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
+
     /*========We create the AccountManager Object==========*/
     $AccountManager = new AccountManager();
     /*========Set values to AccountManager==========*/
     $AccountManager->setUsername($username);
     $AccountManager->setEmail($email);
     $AccountManager->setPassword($password);
+
     /*========Check errors==========*/
     $data = ExecuteRegister();
+
+    /*========JSON WE SEND BACK TO AJAX CALL==========*/
     echo json_encode($data);
 
     function ExecuteRegister(): array

@@ -10,19 +10,12 @@ class AccountManager extends DBConnection {
     private $password = null;
     private $score = null;
     private $img_path = null;
-    private $errorAccount = array();
+    public $errorAccount = array("errorUsername" => false,"errorEmail" => false,"errorPassword" => false);
 
+    #region magical functions
     function __construct() {
         /*========We set the database we will access==========*/
         $this->db_name = "tardium";
-        $this->errorAccount = array("errorUsername" => false,"errorEmail" => false,"errorPassword" => false);
-        if(isset($_SESSION["uid"]))
-        {
-            $this->setUid($_SESSION['uid']);
-            $this->setUsername($_SESSION['username']);
-            $this->setScore($_SESSION['score']);
-            $this->setImgPath($_SESSION['imgPath']);
-        }
     }
 
     public function __toString(): string
@@ -30,11 +23,14 @@ class AccountManager extends DBConnection {
         // TODO: Implement __toString() method.
         return "{username: ". $this->username . ", email:" . $this->email . ",password: ". $this->password ."}";
     }
+    #endregion
 
+    #region user GETTERS AND SETTERS
+    
     /**
-     * @return string
+     * @return null if empty
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -69,9 +65,9 @@ class AccountManager extends DBConnection {
     }
 
     /**
-     * @return string
+     * @return null
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -90,9 +86,9 @@ class AccountManager extends DBConnection {
     }
 
     /**
-     * @return string
+     * @return null
      */
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -117,7 +113,7 @@ class AccountManager extends DBConnection {
     {
         return $this->score;
     }
-
+    
     /**
      * @param null $score
      */
@@ -141,7 +137,7 @@ class AccountManager extends DBConnection {
     {
         $this->imgPath = $imgPath;
     }
-
+    #endregion
 
     public function select(): array
     {
@@ -167,7 +163,7 @@ class AccountManager extends DBConnection {
         return $this->allOk;
     }
 
-    protected function update()
+    public function update()
     {
         // TODO: Implement selectAll() method.
     }
@@ -175,16 +171,8 @@ class AccountManager extends DBConnection {
     public function delete()
     {
         // TODO: Implement delete() method.
-        $this->query="DELETE FROM `accounts` WHERE email='{$this->email}'";
+        $this->query="DELETE FROM accounts WHERE email='{$this->email}'";
         $this->single_query();
     }
 
-
-    public function LogOut()
-    {
-        session_start();
-        $_SESSION = array();
-        session_destroy();
-        //header('Location: login.html');
-    }
 }
