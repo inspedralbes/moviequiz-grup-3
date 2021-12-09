@@ -71,7 +71,7 @@ searchButton.addEventListener(`click`,()=>{
                 movieData.append('title', movie.Title);
                 movieData.append('year', movie.Year);
                 movieData.append('imgPath', movie.Poster);
-                fetch("http://localhost/web/addMovie.php",
+                fetch("http://localhost/addMovie.php",
                     { method: 'POST', body: movieData })
                     .then(res => res.json())
                     .then(data => {

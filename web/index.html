@@ -24,36 +24,53 @@
             <a href="#" class="brand-logo center">Tardium</a>
         </nav>
     </header>
-    <div id="loginContainer" hidden>
+
+    <div id="idValue"></div>
+    <div id="emailValue"></div>
+    <div id="usernameValue"></div>
+    <div id="scoreValue"></div>
+
+    <div id="loginContainer">
         <div class="container" id="log">
-            <form action="" method="POST">
-                <label for="username">USERNAME<input type="text" name="username" id="username"></label>
-                <label for="pwd">PASSWORD<input type="password" name="pwd" id="pwd"></label>
-                <button id="login" class="btn waves-effect waves-light red lighten-1 right" type="button"
-                    name="action">Log IN
-                    <i class="material-icons right">arrow_forward</i>
-                </button>
-                <div id="error"></div>
-            </form>
+            <div class="login">
+                <label for="email">Correu: </label>
+                <input type="email" name="email" id="email">
+                <label for="password">Contrasenya: </label>
+                <input type="password" name="password" id="password">
+                <button class="btn" id="loginButton">Send data</button>
+            </div>
         </div>
-        <div class="container loading" id="loadingSpinner" hidden>
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-red-only">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
+    </div>
+
+    <div id="registerContainer">
+        <div class="container register">
+            <label for="reg-username">Nom: </label>
+            <input type="text" name="reg-username" id="reg-username">
+            <label for="reg-email">Correu: </label>
+            <input type="email" name="reg-email" id="reg-email">
+            <label for="reg-password">Contrasenya: </label>
+            <input type="password" name="reg-password" id="reg-password">
+            <button id="registerButton">Register</button>
+        </div>
+    </div>
+
+    <div class="container loading" id="loadingSpinner" hidden>
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
                 </div>
             </div>
-            <div id="msgloading">Cargando...</div>
         </div>
-        
+        <div id="msgloading">Cargando...</div>
     </div>
+
     <div id='Search' >
         <div class="container">
             <div class="row">
@@ -85,7 +102,8 @@
     <div class="container-films" id="master">
 
     </div> -->
-    <script src="./movieSearch.js"></script>
+    <script src="/movieSearch.js"></script>
+    <script src="./index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- <script src="main.js"></script> -->
 </body>

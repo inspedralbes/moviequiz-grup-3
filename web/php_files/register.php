@@ -24,9 +24,10 @@
         }
         else if($GLOBALS['AccountManager']->select() != null)
         {
-            return array("errorMsg" => "Cuenta ya creada", "ayno" =>$GLOBALS['AccountManager']->select());
+            return array("errorMsg" => "Cuenta ya creada");
         }
         /*========We call the database to receive the account==========*/
+        $GLOBALS['AccountManager']->setUid(uniqid("", true));
         return $GLOBALS['AccountManager']->insert();
     }
 ?>

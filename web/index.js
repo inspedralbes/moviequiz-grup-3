@@ -8,7 +8,7 @@ let registerEmail = document.getElementById("reg-email");
 let registerPassword = document.getElementById("reg-password");
 let registerButton = document.getElementById("registerButton");
 
-
+let user = null;
 
 loginButton.addEventListener('click', () => {
     Login();
@@ -21,11 +21,16 @@ function Login() {
     let userData = new FormData();
     userData.append('email', emailInput.value);
     userData.append('password', passwordInput.value);
-    fetch("http://localhost/web/php_files/login.php",
+    fetch("http://localhost/php_files/login.php",
     { method: 'POST', body: userData })
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            user = data.user[0];
+            document.getElementById("idValue").innerHTML = "ID: " + user.id_user;
+            document.getElementById("emailValue").innerHTML = "Email: " + user.email;
+            document.getElementById("usernameValue").innerHTML = "Username: " + user.username;
+            document.getElementById("scoreValue").innerHTML = "Score: " + user.score;
         });
 }
 function Register() {
@@ -33,7 +38,7 @@ function Register() {
     userData.append('username', registerUsername.value);
     userData.append('email', registerEmail.value);
     userData.append('password', registerPassword.value);
-    fetch("http://localhost/web/php_files/register.php",
+    fetch("http://localhost/php_files/register.php",
     { method: 'POST', body: userData })
         .then(res => res.json())
         .then(data => {

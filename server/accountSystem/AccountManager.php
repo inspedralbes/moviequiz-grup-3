@@ -152,11 +152,17 @@ class AccountManager extends DBConnection {
         return $this->rows;
     }
 
+    public function selectById(): array
+    {
+        $this->query="SELECT * FROM accounts WHERE id_user='{$this->uid}';";
+        $this->multiple_query();
+        return $this->rows;
+    }
+
     public function insert(): array
     {
-        $randomID = $this->generateRandomId();
         $passwordHashed = password_hash($this->password, PASSWORD_DEFAULT);
-        $this->query="INSERT INTO accounts (id_user, username, email, password) VALUES('{$randomID}', '{$this->username}', '{$this->email}', '{$passwordHashed}');";
+        $this->query="INSERT INTO accounts (id_user, username, email, password) VALUES('{$this->uid}', '{$this->username}', '{$this->email}', '{$passwordHashed}');";
         $this->single_query();
         return $this->allOk;
     }
@@ -166,48 +172,14 @@ class AccountManager extends DBConnection {
         // TODO: Implement selectAll() method.
     }
 
-    protected function delete()
+    public function delete()
     {
         // TODO: Implement delete() method.
         $this->query="DELETE FROM `accounts` WHERE email='{$this->email}'";
         $this->single_query();
     }
 
-    function generateRandomId($length = 9) {
-        $characters = '0123456789';
-        $charactersLength = strlen($characters);
-        $randomId = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomId .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomId;
-    }
 
-    public function LogIn(){
-        $data = $this->select();
-        if (password_verify($this->password, $data[0]['password'])) {
-            // TODO: Add info into a SESSION variable.
-            session_start();
-            $this->setUid($data[0]['id']);
-            $this->setUsername($data[0]['username']);
-            $this->setScore($data[0]['score']);
-            $this->setImgPath($data[0]['imgPath']);
-            $_SESSION["uid"] = $this->getUid();
-            $_SESSION["username"] = $this->getUsername();
-            $_SESSION["score"] = $this->getScore();
-            $_SESSION["imgPath"] = $this->getImgPath();
-            return $data;
-        }
-        else{
-            return array("Correct"=>$data[0]['password'], "Sent"=>$this->password);
-            //return array("Exito" => false);
-        }
-    }
-    public function Register()
-    {
-
-        $this->insert();
-    }
     public function LogOut()
     {
         session_start();
@@ -215,7 +187,4 @@ class AccountManager extends DBConnection {
         session_destroy();
         //header('Location: login.html');
     }
-
-
-
 }
