@@ -11,6 +11,15 @@ abstract class DBConnection{
 
     private $conn;
 
+    protected abstract function select();
+    protected abstract function insert();
+    protected abstract function delete();
+    protected abstract function update();
+
+    protected $error = array("error" => true);
+    protected $allOk = array("error" => false);
+
+
     private function open_conn() {
         $this->conn = new mysqli (self::$db_host, self::$db_user, self::$db_pass, $this->db_name);
     }

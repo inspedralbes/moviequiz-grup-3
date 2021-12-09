@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
-require_once(__DIR__."/../server/moviesSystem/MoviesManager.php");
+require_once(__DIR__ . "/../server/moviesSystem/MoviesManager.php");
 /*========Save the info we got from POST==========*/
 $mid = $_POST["id"];
 $title = $_POST["title"];

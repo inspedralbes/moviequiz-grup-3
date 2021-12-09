@@ -10,10 +10,12 @@ class AccountManager extends DBConnection {
     private $password = null;
     private $score = null;
     private $img_path = null;
+    private $errorAccount = array();
 
     function __construct() {
         /*========We set the database we will access==========*/
         $this->db_name = "tardium";
+        $this->errorAccount = array("errorUsername" => false,"errorEmail" => false,"errorPassword" => false);
         if(isset($_SESSION["uid"]))
         {
             $this->setUid($_SESSION['uid']);
@@ -22,6 +24,7 @@ class AccountManager extends DBConnection {
             $this->setImgPath($_SESSION['imgPath']);
         }
     }
+
     public function __toString(): string
     {
         // TODO: Implement __toString() method.
@@ -41,6 +44,11 @@ class AccountManager extends DBConnection {
      */
     public function setUsername(string $username): void
     {
+        if($username === "")
+        {
+            $this->errorAccount['errorUsername'] = true;
+            return;
+        }
         $this->username = $username;
     }
 
@@ -73,6 +81,11 @@ class AccountManager extends DBConnection {
      */
     public function setEmail(string $email): void
     {
+        if(($email === "") || (false === filter_var($email, FILTER_VALIDATE_EMAIL)))
+        {
+            $this->errorAccount['errorEmail'] = true;
+            return;
+        }
         $this->email = $email;
     }
 
@@ -89,6 +102,11 @@ class AccountManager extends DBConnection {
      */
     public function setPassword(string $password): void
     {
+        if(($password === "") || (strlen($password) <= 6))
+        {
+            $this->errorAccount['errorPassword'] = true;
+            return;
+        }
         $this->password = $password;
     }
 
@@ -124,12 +142,8 @@ class AccountManager extends DBConnection {
         $this->imgPath = $imgPath;
     }
 
-    protected function selectAll()
-    {
-        // TODO: Implement selectAll() method.
-    }
 
-    protected function select()
+    public function select(): array
     {
         // TODO: Implement select() method.
         /*========We select the account we want==========*/
@@ -138,12 +152,13 @@ class AccountManager extends DBConnection {
         return $this->rows;
     }
 
-    protected function insert()
+    public function insert(): array
     {
+        $randomID = $this->generateRandomId();
         $passwordHashed = password_hash($this->password, PASSWORD_DEFAULT);
-        $this->query="INSERT INTO accounts (username, email, password)
-                      VALUES('{$this->username}', '{$this->email}', '{$passwordHashed}');";
+        $this->query="INSERT INTO accounts (id_user, username, email, password) VALUES('{$randomID}', '{$this->username}', '{$this->email}', '{$passwordHashed}');";
         $this->single_query();
+        return $this->allOk;
     }
 
     protected function update()
@@ -154,6 +169,18 @@ class AccountManager extends DBConnection {
     protected function delete()
     {
         // TODO: Implement delete() method.
+        $this->query="DELETE FROM `accounts` WHERE email='{$this->email}'";
+        $this->single_query();
+    }
+
+    function generateRandomId($length = 9) {
+        $characters = '0123456789';
+        $charactersLength = strlen($characters);
+        $randomId = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomId .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomId;
     }
 
     public function LogIn(){
@@ -176,17 +203,10 @@ class AccountManager extends DBConnection {
             //return array("Exito" => false);
         }
     }
-    public function Register(){
-        //$data = $this->select();
-        $this->insert();
-        return array("Error" => "???");
-        /*if ($data == false) {
+    public function Register()
+    {
 
-            return array("Error" => false);
-        }
-        else{
-            return array("Error" => true);
-        }*/
+        $this->insert();
     }
     public function LogOut()
     {

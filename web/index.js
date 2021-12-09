@@ -21,7 +21,7 @@ function Login() {
     let userData = new FormData();
     userData.append('email', emailInput.value);
     userData.append('password', passwordInput.value);
-    fetch("http://localhost/web/login.php",
+    fetch("http://localhost/web/php_files/login.php",
     { method: 'POST', body: userData })
         .then(res => res.json())
         .then(data => {
@@ -33,7 +33,7 @@ function Register() {
     userData.append('username', registerUsername.value);
     userData.append('email', registerEmail.value);
     userData.append('password', registerPassword.value);
-    fetch("http://localhost/web/register.php",
+    fetch("http://localhost/web/php_files/register.php",
     { method: 'POST', body: userData })
         .then(res => res.json())
         .then(data => {
