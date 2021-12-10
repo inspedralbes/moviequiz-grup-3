@@ -15,7 +15,7 @@ class AccountManager extends DBConnection {
     #region magical functions
     function __construct() {
         /*========We set the database we will access==========*/
-        $this->db_name = "tardium";
+        $this->db_name = "a19albchavas_tardium";
     }
 
     public function __toString(): string
@@ -143,7 +143,7 @@ class AccountManager extends DBConnection {
     {
         // TODO: Implement select() method.
         /*========We select the account we want==========*/
-        $this->query="SELECT * FROM accounts WHERE email='{$this->email}';";
+        $this->query="SELECT * FROM accounts WHERE email='{$this->email}';";	
         $this->multiple_query();
         return $this->rows;
     }
@@ -155,12 +155,11 @@ class AccountManager extends DBConnection {
         return $this->rows;
     }
 
-    public function insert(): array
+    public function insert()
     {
         $passwordHashed = password_hash($this->password, PASSWORD_DEFAULT);
         $this->query="INSERT INTO accounts (id_user, username, email, password) VALUES('{$this->uid}', '{$this->username}', '{$this->email}', '{$passwordHashed}');";
         $this->single_query();
-        return $this->allOk;
     }
 
     public function update()

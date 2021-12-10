@@ -1,5 +1,7 @@
 <?php
     header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
     header('Content-type: application/json');
     require_once(__DIR__ . "/../../server/accountSystem/AccountManager.php");
     /*========We create the AccountManager Object==========*/
@@ -19,7 +21,7 @@
     function ExecuteLogin(): array
     {
         $data = $GLOBALS['AccountManager']->select();
-        if (password_verify($GLOBALS['password'], $data[0]['password'])) {
+        if (($data != null) && (password_verify($GLOBALS['password'], $data[0]['password']))) {
             session_start();
             $_SESSION["uid"] = $data[0]['id_user'];
             return array("user" => $data, "session_id" => $_SESSION["uid"]);

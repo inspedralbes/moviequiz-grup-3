@@ -1,5 +1,7 @@
 <?php
     header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
     header('Content-type: application/json');
     require_once(__DIR__ . "/../../server/accountSystem/AccountManager.php");
     /*========Save the info we got from POST==========*/
@@ -32,6 +34,7 @@
         }
         /*========We call the database to receive the account==========*/
         $GLOBALS['AccountManager']->setUid(uniqid("", true));
-        return $GLOBALS['AccountManager']->insert();
+        $GLOBALS['AccountManager']->insert();
+	return array("error" => false);
     }
 ?>

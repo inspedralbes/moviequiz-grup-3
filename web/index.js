@@ -1,5 +1,5 @@
-const PATH = "http://localhost/";
-//const PATH = "http://moviequiz3.alumnes.inspedralbes.cat/";
+//const PATH = "http://localhost/";
+const PATH = "http://moviequiz3.alumnes.inspedralbes.cat/";
 
 let emailInput = document.getElementById("email");
 let passwordInput = document.getElementById("password");
@@ -12,7 +12,7 @@ let registerButton = document.getElementById("registerButton");
 
 let user = null;
 
-fetch("php_files/sessionChecker.php")
+fetch(PATH + "php_files/sessionChecker.php")
 .then(res => res.json())
 .then(data => {
     if(data.isLogged == true)
@@ -37,16 +37,19 @@ function Login() {
     let userData = new FormData();
     userData.append('email', emailInput.value);
     userData.append('password', passwordInput.value);
-    fetch(`${PATH}php_files/login.php`,
+    fetch(PATH + "php_files/login.php",
     { method: 'POST', body: userData })
         .then(res => res.json())
         .then(data => {
             console.log(data);
-            user = data.user[0];
-            document.getElementById("idValue").innerHTML = "ID: " + user.id_user;
-            document.getElementById("emailValue").innerHTML = "Email: " + user.email;
-            document.getElementById("usernameValue").innerHTML = "Username: " + user.username;
-            document.getElementById("scoreValue").innerHTML = "Score: " + user.score;
+	    if(data.user != null)
+	    {
+            	user = data.user[0];
+            	document.getElementById("idValue").innerHTML = "ID: " + user.id_user;
+            	document.getElementById("emailValue").innerHTML = "Email: " + user.email;
+            	document.getElementById("usernameValue").innerHTML = "Username: " + user.username;
+            	document.getElementById("scoreValue").innerHTML = "Score: " + user.score;
+	    }
         });
 }
 function Register() {
@@ -54,7 +57,7 @@ function Register() {
     userData.append('username', registerUsername.value);
     userData.append('email', registerEmail.value);
     userData.append('password', registerPassword.value);
-    fetch(`${PATH}php_files/register.php`,
+    fetch(PATH + "php_files/register.php",
     { method: 'POST', body: userData })
         .then(res => res.json())
         .then(data => {

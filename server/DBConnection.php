@@ -2,8 +2,8 @@
 
 abstract class DBConnection{
     private static $db_host = "localhost";
-    private static $db_user = "root";
-    private static $db_pass = "";
+    private static $db_user = "a19albchavas_tardium";
+    private static $db_pass = "Tardium2021";
 
     protected $db_name;
     protected $query;
