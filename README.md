@@ -12,5 +12,5 @@ Un cop comenceu heu de canviar aquesta explicació amb la corresponent al vostre
  * Albert Chao, Eric Clemente, Arnau Orts
  * Movie Quiz 3
  * Petita descripció
- * [Link Movie Quiz](https://www.moviequiz3.alumnes.inspedralbes.cat)
+ * [Link Movie Quiz](http://moviequiz3.alumnes.inspedralbes.cat)
  * Estat: (explicació de en quin punt està)
