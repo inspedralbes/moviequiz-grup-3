@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 13-12-2021 a las 08:36:22
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.10
+-- Servidor: localhost:3306
+-- Tiempo de generación: 13-12-2021 a las 12:02:46
+-- Versión del servidor: 10.6.4-MariaDB-1:10.6.4+maria~focal
+-- Versión de PHP: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `a19albchavas_tardium`
 --
-CREATE DATABASE IF NOT EXISTS `a19albchavas_tardium` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `a19albchavas_tardium` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci;
 USE `a19albchavas_tardium`;
 
 -- --------------------------------------------------------
@@ -33,18 +33,10 @@ CREATE TABLE `accounts` (
   `id_user` varchar(23) NOT NULL,
   `username` varchar(20) NOT NULL,
   `email` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` text NOT NULL,
   `score` int(9) NOT NULL DEFAULT 0,
   `img_path` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `accounts`
---
-
-INSERT INTO `accounts` (`id_user`, `username`, `email`, `password`, `score`, `img_path`) VALUES
-('071985437', 'eric', 'eric@gmail.com', '$2y$10$FG.HRUTmozZEfGgBw4EW/OJrt', 0, NULL),
-('453321175', 'albert', 'albert@gmail.com', '$2y$10$hfkuSpxgleLVJ3LZSw4zmuvOI', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -53,8 +45,8 @@ INSERT INTO `accounts` (`id_user`, `username`, `email`, `password`, `score`, `im
 --
 
 CREATE TABLE `feedbacks` (
-  `id_movie` int(9) NOT NULL,
-  `id_user` varchar(9) NOT NULL,
+  `id_movie` varchar(9) NOT NULL,
+  `id_user` varchar(23) NOT NULL,
   `rating` decimal(1,1) DEFAULT NULL,
   `comment` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -78,7 +70,7 @@ CREATE TABLE `games` (
 --
 
 CREATE TABLE `movies` (
-  `id_movie` int(9) NOT NULL,
+  `id_movie` varchar(9) NOT NULL,
   `title` varchar(20) NOT NULL,
   `year` int(4) NOT NULL,
   `rating` decimal(1,1) NOT NULL,
@@ -116,23 +108,6 @@ ALTER TABLE `games`
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`id_movie`),
   ADD KEY `id_movie` (`id_movie`);
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `feedbacks`
---
-ALTER TABLE `feedbacks`
-  ADD CONSTRAINT `feedbacks_ibfk_1` FOREIGN KEY (`id_movie`) REFERENCES `movies` (`id_movie`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_user` FOREIGN KEY (`id_user`) REFERENCES `accounts` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `games`
---
-ALTER TABLE `games`
-  ADD CONSTRAINT `games_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `accounts` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
