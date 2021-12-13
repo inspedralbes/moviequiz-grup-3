@@ -15,7 +15,7 @@ let openLogin = document.getElementById(`open-login`);
 ////////CONTAINERS/////////////
 let loginContainer = document.getElementById("login-container");
 let registerContainer = document.getElementById("register-container");
-
+let mainContainer = document.getElementById("main-container");
 openRegister.addEventListener('click',() => {
     SwapSignUp();
 });
@@ -27,10 +27,11 @@ function SwapSignUp(){
     loginContainer.hidden = !loginContainer.hidden;
     registerContainer.hidden = !registerContainer.hidden;
 }
-
 document.addEventListener('DOMContentLoaded', function () {
-    var textNeedCount = document.querySelectorAll('#input_text, #textarea1');
+    var textNeedCount = document.querySelectorAll('#reg-username, #textarea1');
     M.CharacterCounter.init(textNeedCount);
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
 });
 
 
@@ -43,10 +44,10 @@ fetch(PATH + "php_files/sessionChecker.php")
     {
         user = data.user[0];
         console.log(user);
+        isLogged();
         document.getElementById("Search").hidden = false;
     }       
 });
-
 
 loginButton.addEventListener('click', () => {
     Login();
@@ -64,14 +65,16 @@ function Login() {
         .then(res => res.json())
         .then(data => {
             console.log(data);
-	    if(data.user != null)
-	    {
-            	user = data.user[0];
-            	document.getElementById("idValue").innerHTML = "ID: " + user.id_user;
-            	document.getElementById("emailValue").innerHTML = "Email: " + user.email;
-            	document.getElementById("usernameValue").innerHTML = "Username: " + user.username;
-            	document.getElementById("scoreValue").innerHTML = "Score: " + user.score;
-	    }
+            if(data.user != null)
+            {
+                user = data.user[0];
+                document.getElementById("idValue").innerHTML = "ID: " + user.id_user;
+                document.getElementById("emailValue").innerHTML = "Email: " + user.email;
+                document.getElementById("usernameValue").innerHTML = "Username: " + user.username;
+                document.getElementById("scoreValue").innerHTML = "Score: " + user.score;
+                
+                isLogged();
+            }
         });
 }
 function Register() {
@@ -85,4 +88,10 @@ function Register() {
         .then(data => {
             console.log(data);
     });
+}
+
+
+function isLogged(){
+    loginContainer.hidden = true;
+    main.hidden = false;
 }
