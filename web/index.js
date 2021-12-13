@@ -1,5 +1,5 @@
-//const PATH = "http://localhost/";
-const PATH = "http://moviequiz3.alumnes.inspedralbes.cat/";
+const PATH = "http://localhost/";
+//const PATH = "http://moviequiz3.alumnes.inspedralbes.cat/";
 
 let emailInput = document.getElementById("email");
 let passwordInput = document.getElementById("password");
