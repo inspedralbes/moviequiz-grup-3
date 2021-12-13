@@ -1,3 +1,7 @@
+:root{
+  --base-color: #7e57c2;
+}
+
 body {
   display: flex;
   min-height: 100vh;
@@ -13,8 +17,8 @@ main {
 }
 /*robao de internet claramente*/
 .checkbox-purple[type="checkbox"].filled-in:checked + span:not(.lever):after {
-  border: 2px solid #7e57c2;
-  background-color: #7e57c2;
+  border: 2px solid var(--base-color);
+  background-color: var(--base-color);
 }
 
 .col.s12>.btn {
@@ -24,4 +28,17 @@ main {
 .loading {
   padding: 100px;
   text-align: center;
+}
+/* cambia el color de la label al seleccionar el input */
+.input-field input:focus + label {
+  color: var(--base-color) !important;
+}
+/* cambia el color de la "uderline" al seleccionar el input */
+.row .input-field input:focus {
+  border-bottom: 1px solid var(--base-color) !important;
+  box-shadow: 0 1px 0 0 var(--base-color) !important
+}
+ /* Cambia el color del icono al seleccionar el input */
+.input-field .prefix.active {
+  color: var(--base-color);
 }
