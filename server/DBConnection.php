@@ -35,6 +35,7 @@ abstract class DBConnection{
 
     protected function multiple_query() {
         $this->open_conn();
+        $this->rows = array();
         $result = $this->conn->query($this->query);
         if($result != false)
         {
