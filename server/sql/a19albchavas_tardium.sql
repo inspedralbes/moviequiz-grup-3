@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-12-2021 a las 08:19:41
+-- Tiempo de generación: 13-12-2021 a las 08:36:22
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `a19albchavas_tardium`
 --
+CREATE DATABASE IF NOT EXISTS `a19albchavas_tardium` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `a19albchavas_tardium`;
 
 -- --------------------------------------------------------
 
