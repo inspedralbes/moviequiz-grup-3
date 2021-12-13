@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 13-12-2021 a las 13:41:24
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.10
+-- Servidor: localhost:3306
+-- Tiempo de generación: 13-12-2021 a las 13:47:56
+-- Versión del servidor: 10.6.4-MariaDB-1:10.6.4+maria~focal
+-- Versión de PHP: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `a19albchavas_tardium`
 --
-CREATE DATABASE IF NOT EXISTS `a19albchavas_tardium` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `a19albchavas_tardium`;
 
 -- --------------------------------------------------------
 
@@ -79,7 +77,7 @@ CREATE TABLE `games` (
 
 CREATE TABLE `movies` (
   `id_movie` varchar(9) NOT NULL,
-  `title` varchar(20) NOT NULL,
+  `title` text NOT NULL,
   `year` int(4) NOT NULL,
   `rating` decimal(1,1) NOT NULL,
   `img_path` text NOT NULL

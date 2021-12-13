@@ -98,6 +98,7 @@ class MoviesManager extends DBConnection{
     }
     #endregion
 
+    /////////SQL FUNCTIONS///////////////////////////////////////////////////////////////////////////////////////////////
 
     public function selectAllMovies()
     {
@@ -107,7 +108,6 @@ class MoviesManager extends DBConnection{
         $this->multiple_query();
         return $this->rows;
     }
-/////////SQL FUNCTIONS///////////////////////////////////////////////////////////////////////////////////////////////
     public function select()
     {
         // TODO: Implement select() method.
@@ -175,7 +175,7 @@ class MoviesManager extends DBConnection{
             else{
                 return array("info" => "Película añadida anteriormente a movies y a feedback", "data" => $data, "feedback" => $feedback);
                 // TODO: Quitar la peli de favoritos (feedback)
-
+                
             }
         }
     }
