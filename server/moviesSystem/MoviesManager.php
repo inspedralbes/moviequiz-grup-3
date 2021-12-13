@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__."/../DBConnection.php");
-
+session_start();
 class MoviesManager extends DBConnection{
 
     private $mid = null;
@@ -117,6 +117,13 @@ class MoviesManager extends DBConnection{
         return $this->rows;
     }
 
+    public function selectFeedback()
+    {
+        $this->query="SELECT * FROM feedbacks WHERE id_movie='{$this->mid}' AND id_user='{$_SESSION['uid']}';";
+        $this->multiple_query();
+        return $this->rows;
+    }
+
     public function insert()
     {
         // TODO: Implement insert() method.
@@ -128,9 +135,7 @@ class MoviesManager extends DBConnection{
     public function insertFeedback()
     {
         // TODO: Implement insert() method.
-        session_start();
-        $this->query="INSERT INTO feedback (id_movie, id_user)
-                            VALUES('{$this->mid}', '{$_SESSION['uid']}';";
+        $this->query="INSERT INTO feedbacks (id_movie, id_user) VALUES('{$this->mid}', '{$_SESSION['uid']}');"; //'{$_SESSION['uid']}'
         $this->single_query();
     }
 
@@ -153,17 +158,26 @@ class MoviesManager extends DBConnection{
     public function AddMovie()
     {
         // TODO: Implement AddMovie() method.
-        //$this->select();
-        try{
+        $data = $this->select();
+        if ($data == null)
+        {
             $this->insert();
             $this->insertFeedback();
-            return array("Error" => false);
+            return array("info" => "Película añadida a movies y a feedbacks", "data" => $data);
         }
-        catch (Exception $e)
-        {
-            return array("Error" => true);
-        }
+        else{
+            $feedback = $this->selectFeedback();
+            if($feedback == null)
+            {
+                $this->insertFeedback();
+                return array("info" => "Película añadida anteriormente a movies, ahora añadida a feedback", "data" => $data, "feedback" => $feedback);
+            }
+            else{
+                return array("info" => "Película añadida anteriormente a movies y a feedback", "data" => $data, "feedback" => $feedback);
+                // TODO: Quitar la peli de favoritos (feedback)
 
+            }
+        }
     }
 
 

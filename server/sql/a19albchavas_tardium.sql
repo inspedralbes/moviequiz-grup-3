@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 13-12-2021 a las 12:02:46
--- Versión del servidor: 10.6.4-MariaDB-1:10.6.4+maria~focal
--- Versión de PHP: 7.4.24
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-12-2021 a las 13:41:24
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `a19albchavas_tardium`
 --
-CREATE DATABASE IF NOT EXISTS `a19albchavas_tardium` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci;
+CREATE DATABASE IF NOT EXISTS `a19albchavas_tardium` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `a19albchavas_tardium`;
 
 -- --------------------------------------------------------
@@ -38,6 +38,13 @@ CREATE TABLE `accounts` (
   `img_path` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `accounts`
+--
+
+INSERT INTO `accounts` (`id_user`, `username`, `email`, `password`, `score`, `img_path`) VALUES
+('61b73c3b8ca138.98305823', 'albert', 'albert@gmail.com', '$2y$10$Xb5Y.9m9sPu31CdX.X37dOpCDYk9paSYkUg5QnlzDJGiQ98r3wHca', 0, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +52,7 @@ CREATE TABLE `accounts` (
 --
 
 CREATE TABLE `feedbacks` (
+  `id_feedback` int(11) NOT NULL,
   `id_movie` varchar(9) NOT NULL,
   `id_user` varchar(23) NOT NULL,
   `rating` decimal(1,1) DEFAULT NULL,
@@ -92,6 +100,7 @@ ALTER TABLE `accounts`
 -- Indices de la tabla `feedbacks`
 --
 ALTER TABLE `feedbacks`
+  ADD PRIMARY KEY (`id_feedback`),
   ADD KEY `id_movie` (`id_movie`),
   ADD KEY `id_user` (`id_user`);
 
@@ -108,6 +117,16 @@ ALTER TABLE `games`
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`id_movie`),
   ADD KEY `id_movie` (`id_movie`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `feedbacks`
+--
+ALTER TABLE `feedbacks`
+  MODIFY `id_feedback` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
