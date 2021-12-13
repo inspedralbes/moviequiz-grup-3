@@ -86,6 +86,7 @@ function Login() {
             if(data.user != null)
             {
                 user = data.user[0];
+                LoadInfoUser(user);
                 document.getElementById("idValue").innerHTML = "ID: " + user.id_user;
                 document.getElementById("emailValue").innerHTML = "Email: " + user.email;
                 document.getElementById("usernameValue").innerHTML = "Username: " + user.username;
