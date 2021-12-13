@@ -160,6 +160,8 @@ class AccountManager extends DBConnection {
         $passwordHashed = password_hash($this->password, PASSWORD_DEFAULT);
         $this->query="INSERT INTO accounts (id_user, username, email, password) VALUES('{$this->uid}', '{$this->username}', '{$this->email}', '{$passwordHashed}');";
         $this->single_query();
+        //borrar, no debe devolver nada
+        return array("email" => $this->email, "password" => $this->password);
     }
 
     public function update()

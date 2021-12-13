@@ -9,11 +9,14 @@ class MoviesManager extends DBConnection{
     private $img_path = null;
     private $rating = null;
 
+    #region magical functions
     public function  __construct()
     {
-        $this->db_name = "tardium";
+        $this->db_name = "a19albchavas_tardium";
     }
+    #endregion
 
+    #region GETTERS AND SETTERS
     /**
      * @return null
      */
@@ -93,44 +96,50 @@ class MoviesManager extends DBConnection{
     {
         $this->rating = $rating;
     }
+    #endregion
 
-    protected function selectAll()
+
+    public function selectAllMovies()
     {
         // TODO: Implement selectAll() method.
-    }
-/////////SQL FUNCTIONS///////////////////////////////////////////////////////////////////////////////////////////////
-    protected function select()
-    {
-        // TODO: Implement select() method.
         /*========We select the account we want==========*/
         $this->query="SELECT * FROM movies;";
         $this->multiple_query();
         return $this->rows;
     }
+/////////SQL FUNCTIONS///////////////////////////////////////////////////////////////////////////////////////////////
+    public function select()
+    {
+        // TODO: Implement select() method.
+        /*========We select the account we want==========*/
+        $this->query="SELECT * FROM movies WHERE id_movie='{$this->mid}';";
+        $this->multiple_query();
+        return $this->rows;
+    }
 
-    protected function insert()
+    public function insert()
     {
         // TODO: Implement insert() method.
         $this->query="INSERT INTO movies (id_movie, title, year, rating, img_path)
-                      VALUES('{$this->mid}', '{$this->title}', '{$this->year}', '0', '{$this->img_path}');";
+                            VALUES('{$this->mid}', '{$this->title}', '{$this->year}', '0', '{$this->img_path}');";
         $this->single_query();
     }
 
-    protected function insertFeedback()
+    public function insertFeedback()
     {
         // TODO: Implement insert() method.
         session_start();
         $this->query="INSERT INTO feedback (id_movie, id_user)
-                      VALUES('{$this->mid}', '{$_SESSION['uid']}';";
+                            VALUES('{$this->mid}', '{$_SESSION['uid']}';";
         $this->single_query();
     }
 
-    protected function update()
+    public function update()
     {
         // TODO: Implement update() method.
     }
 
-    protected function delete()
+    public function delete()
     {
         // TODO: Implement delete() method.
     }
