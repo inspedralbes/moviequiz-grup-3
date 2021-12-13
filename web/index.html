@@ -7,88 +7,179 @@
     <title>Main</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        .col.s12>.btn {
-            width: 100%;
-        }
-
-        .loading {
-            padding: 100px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="basic.css">
 </head>
 <body>
     <header>
-        <nav>
-            <a href="#" class="brand-logo center">Tardium</a>
+        <nav class="black">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Tardium</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
+    <main>
 
-    <div id="idValue"></div>
-    <div id="emailValue"></div>
-    <div id="usernameValue"></div>
-    <div id="scoreValue"></div>
 
-    <div id="loginContainer">
-        <div class="container" id="log">
-            <div class="login">
-                <label for="email">Correu: </label>
-                <input type="email" name="email" id="email">
-                <label for="password">Contrasenya: </label>
-                <input type="password" name="password" id="password">
-                <button class="btn" id="loginButton">Send data</button>
+        <div id="idValue"></div>
+        <div id="emailValue"></div>
+        <div id="usernameValue"></div>
+        <div id="scoreValue"></div>
+    
+        <div id="login-container" class="container">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">email</i>
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>  
+                    <div class="row">
+                        <div class="input-field col  s12">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" id="login-button" type="button" name="action">log in</button>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="center-align">Encara no tens un compte? <a id="open-register">Registra't</a></p>
+                    </div> 
+                </form>
             </div>
         </div>
-    </div>
-
-    <div id="registerContainer">
-        <div class="container register">
-            <label for="reg-username">Nom: </label>
-            <input type="text" name="reg-username" id="reg-username">
-            <label for="reg-email">Correu: </label>
-            <input type="email" name="reg-email" id="reg-email">
-            <label for="reg-password">Contrasenya: </label>
-            <input type="password" name="reg-password" id="reg-password">
-            <button id="registerButton">Register</button>
-        </div>
-    </div>
-
-    <div class="container loading" id="loadingSpinner" hidden>
-        <div class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-red-only">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
+    
+        <div class="container" id="register-container" hidden>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="reg-username" type="text" class="" data-length="20">
+                            <label for="reg-username">Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">email</i>
+                            <input id="reg-email" type="email" class="">
+                            <label for="reg-email">Email</label>
+                            <span class="helper-text" data-error="Format d'email incorrecte!" data-success="Correcte"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col m6 s12">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="reg-password" type="password" class="">
+                            <label for="reg-password">Password</label>
+                            <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        </div>
+                        <div class="input-field col m6 s12">
+                            <i class="material-icons prefix">lock</i>
+                            <input id="reg-rpassword" type="password" class="">
+                            <label for=reg-rpassword">Repeat password</label>
+                            <span class="helper-text" data-error="wrong" data-success="right"></span>
+                        </div>
+                    </div>
+                    <p>
+                        <label>
+                            <input type="checkbox" class="filled-in checkbox-purple" />
+                            <span>I agree with all <a href="#">terms</a></span>
+                        </label>
+                    </p>
+                    <div class="row">
+                        <div class="col s12">
+                            <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button"
+                            id="register-button" name="action">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <p class="center-align">Ja tens un compte? <a id="open-login">Inicia sessió</a></p>
+                </div> 
             </div>
         </div>
-        <div id="msgloading">Cargando...</div>
-    </div>
+    
+        <div class="container loading" id="loadingSpinner" hidden>
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-red-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="msgloading">Cargando...</div>
+        </div>
+    
+        <div id='Search' hidden>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 input-field"><input id="movie-input" type="text"></div>
+                    <div class="col s12">
+                        <button id="search" class="btn waves-effect waves-light red lighten-1" type="submit"
+                            name="action">Search
+                            <i class="material-icons right">search</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div id="movie-container" class="row"></div>
+            </div>
+        </div>
+    </main>
 
-    <div id='Search' >
+    <footer class="black page-footer">
         <div class="container">
             <div class="row">
-                <div class="col s12 input-field"><input id="movie-input" type="text"></div>
                 <div class="col s12">
-                    <button id="search" class="btn waves-effect waves-light red lighten-1" type="submit"
-                        name="action">Search
-                        <i class="material-icons right">search</i>
-                    </button>
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col m6 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col m6 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2021 Copyright, All rights reserved.
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div id="movie-container" class="row"></div>
-        </div>
-    </div>
-
-
+    </footer>
     
     <!-- <div class="login">
     

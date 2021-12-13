@@ -16,3 +16,12 @@ main {
   border: 2px solid #7e57c2;
   background-color: #7e57c2;
 }
+
+.col.s12>.btn {
+  width: 100%;
+}
+
+.loading {
+  padding: 100px;
+  text-align: center;
+}
