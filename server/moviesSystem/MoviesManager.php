@@ -147,6 +147,8 @@ class MoviesManager extends DBConnection{
     public function delete()
     {
         // TODO: Implement delete() method.
+        $this->query="DELETE FROM feedbacks WHERE id_movie='{$this->mid}' AND id_user='{$_SESSION['uid']}';";
+        $this->single_query();
     }
 
     public function GetMovies()
@@ -163,19 +165,18 @@ class MoviesManager extends DBConnection{
         {
             $this->insert();
             $this->insertFeedback();
-            return array("info" => "Película añadida a movies y a feedbacks", "data" => $data);
+            return array("info" => "Insertar en movies y en feedbacks");
         }
         else{
             $feedback = $this->selectFeedback();
             if($feedback == null)
             {
                 $this->insertFeedback();
-                return array("info" => "Película añadida anteriormente a movies, ahora añadida a feedback", "data" => $data, "feedback" => $feedback);
+                return array("info" => "Insertar solo en feedbacks");
             }
             else{
-                return array("info" => "Película añadida anteriormente a movies y a feedback", "data" => $data, "feedback" => $feedback);
-                // TODO: Quitar la peli de favoritos (feedback)
-                
+                $this->delete();
+                return array("info" => "Fuera de favoritos");
             }
         }
     }

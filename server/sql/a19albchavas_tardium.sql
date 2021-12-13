@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `a19albchavas_tardium`
 --
+CREATE DATABASE IF NOT EXISTS `a19albchavas_tardium` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci;
+USE `a19albchavas_tardium`;
 
 -- --------------------------------------------------------
 
@@ -35,13 +37,6 @@ CREATE TABLE `accounts` (
   `score` int(9) NOT NULL DEFAULT 0,
   `img_path` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `accounts`
---
-
-INSERT INTO `accounts` (`id_user`, `username`, `email`, `password`, `score`, `img_path`) VALUES
-('61b73c3b8ca138.98305823', 'albert', 'albert@gmail.com', '$2y$10$Xb5Y.9m9sPu31CdX.X37dOpCDYk9paSYkUg5QnlzDJGiQ98r3wHca', 0, NULL);
 
 -- --------------------------------------------------------
 
