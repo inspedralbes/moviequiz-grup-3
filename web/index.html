@@ -33,48 +33,62 @@
     
     <main>
         <div id="main-container"class="container" hidden>
+            
+            <!--    SIDE NAV    -->
+            <ul id="slide-out" class="sidenav">
+                <li><div class="user-view">
+                    <div class="background">
+                        <img src="img/defaultBackground.jpg">
+                    </div>
+                    <a href="#user"><img class="circle" src="img/defaultUserImage.png"></a>
+                    <a href="#name"><span class="white-text name text-username">Username</span></a>
+                    <a href="#email"><span class="white-text email text-email">random_email@gmail.com</span></a>
+                    <a href="#score"><span class="white-text">Your score: </span><span class="white-text text-score">0</span></a>
+                </div></li>
+                <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+                <li><a href="#!">Second Link</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="subheader">Subheader</a></li>
+                <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            </ul>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+
+
+            <!--    LOG OUT AND USER INFO (DELETE)      -->
             <button class="btn waves-effect waves-light deep-purple lighten-1" id="log-out-button" type="button" name="action">log out</button>
             <div id="idValue"></div>
             <div id="emailValue"></div>
             <div id="usernameValue"></div>
             <div id="scoreValue"></div>
 
+
+
+
+            <!--    SEARCH CONTAINER      -->
             <div id='Search'>
-                <ul id="slide-out" class="sidenav">
-                    <li><div class="user-view">
-                        <div class="background">
-                            <img src="img/defaultBackground.jpg">
-                        </div>
-                        <a href="#user"><img class="circle" src="img/defaultUserImage.png"></a>
-                        <a href="#name"><span class="white-text name text-username">Username</span></a>
-                        <a href="#email"><span class="white-text email text-email">random_email@gmail.com</span></a>
-                        <a href="#score"><span class="white-text">Your score: </span><span class="white-text text-score">0</span></a>
-                    </div></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-                    <li><a href="#!">Second Link</a></li>
-                    <li><div class="divider"></div></li>
-                    <li><a class="subheader">Subheader</a></li>
-                    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-                </ul>
-                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                
                 <div class="container">
                     <div class="row">
                         <div class="col s12 input-field"><input id="movie-input" type="text"></div>
-                        <div class="col s12">
-                            <button id="search" class="btn waves-effect waves-light deep-purple lighten-1" type="submit"
-                                name="action">Search
-                                <i class="material-icons right">search</i>
-                            </button>
+                            <div class="col s12">
+                                <button id="search" class="btn waves-effect waves-light deep-purple lighten-1" type="submit"
+                                    name="action">Search
+                                    <i class="material-icons right">search</i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="container">
-                    <div id="movie-container" class="row"></div>
+                    <div class="container">
+                        <div id="movie-container" class="row"></div>
+                    </div>
                 </div>
             </div>
-        </div>
         
+
+
+
+        <!--    lOGIN CONTAINER      -->
         <div id="login-container" class="container" hidden>
             <div class="row">
                 <form class="col s12">
@@ -103,7 +117,11 @@
                 </form>
             </div>
         </div>
-    
+
+
+
+
+        <!--    REGISTER CONTAINER      -->
         <div class="container" id="register-container" hidden>
             <div class="row">
                 <form class="col s12">
@@ -132,7 +150,7 @@
                         <div class="input-field col m6 s12">
                             <i class="material-icons prefix">lock</i>
                             <input id="reg-rpassword" type="password" class="">
-                            <label for=reg-rpassword">Repeat password</label>
+                            <label for="reg-rpassword">Repeat password</label>
                             <span class="helper-text" data-error="wrong" data-success="right"></span>
                         </div>
                     </div>
@@ -154,7 +172,41 @@
                 </div> 
             </div>
         </div>
+
+
+
+
+        <!--    GAME SELECTOR CONTAINER      -->
+        <div class="container" id="game-container">  <!-- hidden -->
+            <div class="container" id="user-games">
+            <h1 class="center">Les meves partides</h1>
+                <div class="container">
+                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1 modal-trigger" type="button"
+                                    id="new-game-button" name="new-game-button" href="#question-modal">Crear joc</button>
+                    <h2>Llista de jocs</h2>
+                </div>
+            </div>
+            <div id="question-modal" class="modal">
+                <div class="right">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">cancel</i></a>
+                </div>
+                <div class="modal-content">
+                    <h4 class="center">Joc</h4>
+                    <img src="" alt="">
+                    <p class="center">De quin any és aquesta pel·lícula?</p>
+                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r1"></button>
+                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r2"></button>
+                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r3"></button>
+                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r4"></button>
+                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r5"></button>
+                </div>
+            </div>
+        </div>
     
+
+
+
+        <!--    LOADING CONTAINER      -->
         <div class="container loading" id="loadingSpinner" hidden>
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-red-only">
@@ -174,6 +226,10 @@
         
     </main>
 
+
+
+
+    <!--    FOOTER CONTAINER      -->
     <footer class="black page-footer">
         <div class="container">
             <div class="row">
@@ -222,6 +278,11 @@
     <div class="container-films" id="master">
 
     </div> -->
+
+
+
+
+    <!--    SCRIPTS     -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="text/javascript" src="./movieSearch.js"></script>
     <script type="text/javascript" src="./index.js"></script>
