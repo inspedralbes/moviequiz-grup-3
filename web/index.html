@@ -12,6 +12,7 @@
 <body>
 
     <header>
+        <!--    NAVIGATION    -->
         <nav class="black">
             <div class="nav-wrapper">
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -45,7 +46,7 @@
                     <a href="#email"><span class="white-text email text-email">random_email@gmail.com</span></a>
                     <a href="#score"><span class="white-text">Your score: </span><span class="white-text text-score">0</span></a>
                 </div></li>
-                <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+                <li><a id="nav-games"><i class="material-icons">videogame_asset</i>Partides</a></li>
                 <li><a href="#!">Second Link</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Subheader</a></li>
@@ -186,14 +187,18 @@
                     <h2>Llista de jocs</h2>
                 </div>
             </div>
+
+
+
+
+            <!--    MODAL FOR QUESTIONS     -->
             <div id="question-modal" class="modal">
                 <div class="right">
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">cancel</i></a>
+                    <a class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
                 </div>
                 <div class="modal-content">
-                    <h4 class="center">Joc</h4>
-                    <img src="" alt="">
-                    <p class="center">De quin any és aquesta pel·lícula?</p>
+                    <h4>De quin any és aquesta pel·lícula?</h4>
+                    <img src="img/defaultUserImage.png" alt="img_path">
                     <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r1"></button>
                     <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r2"></button>
                     <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r3"></button>

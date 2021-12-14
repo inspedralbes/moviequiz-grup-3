@@ -38,7 +38,12 @@ main {
   border-bottom: 1px solid var(--base-color) !important;
   box-shadow: 0 1px 0 0 var(--base-color) !important
 }
- /* Cambia el color del icono al seleccionar el input */
+/* Cambia el color del icono al seleccionar el input */
 .input-field .prefix.active {
   color: var(--base-color);
+}
+/* Cambia la anchura y altura del modal */
+.modal {
+  width: 75% !important;
+  max-height: 100% !important;
 }
