@@ -32,6 +32,8 @@ openLogin.addEventListener('click',() => {
 });
 
 function SwapSignUp(){
+    loginContainer.querySelector("form").reset();
+    registerContainer.querySelector("form").reset();
     loginContainer.hidden = !loginContainer.hidden;
     registerContainer.hidden = !registerContainer.hidden;
 }
