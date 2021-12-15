@@ -42,6 +42,8 @@ openLogin.addEventListener('click',() => {
 function SwapSignUp(){
     loginContainer.hidden = !loginContainer.hidden;
     registerContainer.hidden = !registerContainer.hidden;
+    loginContainer.querySelector("form").reset();
+    registerContainer.querySelector("form").reset();
 }
 
 //#region LOGIN FORM
@@ -98,19 +100,19 @@ const registerRepeatedPassword = document.getElementById("reg-rpassword");
 let registerButton = document.getElementById("register-button");
 
 /*==========We add the events needed for login==========*/
-registerUsername.addEventListener('blur', () =>{
+registerUsername.addEventListener('input', () =>{
     CheckUsername();
     Validate();
 });
-registerEmail.addEventListener('blur', () =>{
+registerEmail.addEventListener('input', () =>{
     CheckEmail();
     Validate();
 });
-registerPassword.addEventListener('blur', () =>{
+registerPassword.addEventListener('input', () =>{
     CheckPasswords();
     Validate();
 });
-registerRepeatedPassword.addEventListener('blur', () =>{
+registerRepeatedPassword.addEventListener('input', () =>{
     CheckPasswords();
     Validate();
 });
@@ -141,18 +143,14 @@ function Register() {
 function CheckUsername(){
 
     let usernameRegex = /[ `!@#$%^&*()+\=\[\]{};':"\\|,.<>\/?~]/;
-    console.log(registerUsername.value.length);
-    console.log(registerUsername.getAttribute('data-length'));
-    console.log(registerEmailHelperText);
-    console.log(usernameRegex.test(registerUsername.value));
 
     if(registerUsername.value.length == 0){
         isEmpty(registerUsername);
     }
-    else if (registerUsername.value.length <= 3) 
+    else if (registerUsername.value.length < 3) 
     { 
         isNotValid(registerUsername);
-        registerUsernameHelperText.setAttribute('data-error',`El nom no pot tindre menys de 3 caràcters`);
+        registerUsernameHelperText.setAttribute('data-error',`El nom no pot tenir menys de 3 caràcters`);
     } 
     else if (registerUsername.value.length > registerUsername.getAttribute('data-length')) 
     { 
@@ -178,11 +176,11 @@ function CheckEmail(){
     else if(!emailRegex.test(registerEmail.value))
     {
         isNotValid(registerEmail);
-        registerUsernameHelperText.setAttribute('data-error',`El format d'email introduït no és valid`);
+        registerEmailHelperText.setAttribute('data-error',`El format d'email introduït no és valid`);
     }
     else{
         isValid(registerEmail);
-        registerUsernameHelperText.setAttribute('data-error',"");
+        registerEmailHelperText.setAttribute('data-error',"");
     }
 }
 function CheckPasswords(){
