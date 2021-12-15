@@ -130,6 +130,7 @@
                         <div class="input-field col s12">
                             <i class="material-icons prefix">account_circle</i>
                             <input id="reg-username" type="text" class="" data-length="20">
+                            <span class="helper-text" data-error="No és vàlid!" data-success="Vàlid!"></span>
                             <label for="reg-username">Name</label>
                         </div>
                     </div>
@@ -138,7 +139,7 @@
                             <i class="material-icons prefix">email</i>
                             <input id="reg-email" type="email" class="">
                             <label for="reg-email">Email</label>
-                            <span class="helper-text" data-error="Format d'email incorrecte!" data-success="Correcte"></span>
+                            <span class="helper-text" data-error="Format d'email incorrecte!" data-success="Vàlid!"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -164,7 +165,7 @@
                     <div class="row">
                         <div class="col s12">
                             <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button"
-                            id="register-button" name="action">Register</button>
+                            id="register-button" name="action" disabled>Register</button>
                         </div>
                     </div>
                 </form>
