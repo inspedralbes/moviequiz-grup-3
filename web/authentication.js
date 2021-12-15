@@ -147,7 +147,7 @@ function CheckUsername(){
     if(registerUsername.value.length == 0){
         isEmpty(registerUsername);
     }
-    else if (registerUsername.value.length < 3) 
+    else if (registerUsername.value.length < 3)
     { 
         isNotValid(registerUsername);
         registerUsernameHelperText.setAttribute('data-error',`El nom no pot tenir menys de 3 caràcters`);
@@ -162,7 +162,7 @@ function CheckUsername(){
         isNotValid(registerUsername);
         registerUsernameHelperText.setAttribute('data-error',"Caràcters permesos: a-z, A-Z, 0-9, -, _");
     }
-    else if(registerUsername.value.length > 3 && registerUsername.value.length <= registerUsername.getAttribute('data-length')){ 
+    else { 
         isValid(registerUsername);
         registerUsernameHelperText.setAttribute('data-error',"");
     }
