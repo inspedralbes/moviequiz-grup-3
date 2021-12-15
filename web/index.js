@@ -24,6 +24,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+buttonNewGame.addEventListener("click", () => {
+    fetch(PATH + "php_files/games.php")
+            .then(res => res.json())
+            .then(data => {
+                console.log(data[0]);
+            });
+        });
+
+
+
+
 function LoadInfoUser(user){
     for (var i = 0; i < usernameElements.length; i++) {
         usernameElements[i].innerHTML = user.username;
