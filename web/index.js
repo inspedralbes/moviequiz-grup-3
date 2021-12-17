@@ -83,7 +83,7 @@ function NextQuestion()
     {
         // close modal and send json to db
         let data = new FormData();
-        data.append('games_json', game_json);
+        data.append('games_json', JSON.stringify(game_json));
         data.append('results_json', results_json);
 
         fetch(PATH + "php_files/insertGame.php",
