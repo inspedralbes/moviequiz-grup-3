@@ -1,8 +1,9 @@
 <?php
 require_once(__DIR__."/../DBConnection.php");
-
+session_start();
 class GamesManager extends DBConnection
 {
+    
     //      ARRAY FOR CREATING YEARS' ARRAY     //
     private $addToYears = array(-15 , -10 , -5 , -2  , 2 , 5 , 10 ,15);
 
@@ -13,19 +14,19 @@ class GamesManager extends DBConnection
     }
     #endregion
     
-    //      SELECT ALL FROM MOVIES      //
+    //      SELECT ALL FROM MOVIES RANDOMIZED       //
     public function select(): array
     {
-        // TODO: Implement select() method.
         $this->query="SELECT * FROM movies ORDER BY RAND() LIMIT 5;";
         $this->multiple_query();
         return $this->rows;
     }
 
-    //      INSERT GAMES' JSON INTO GAMES' TABLE     //     unused now
+    //      INSERT GAMES' JSON INTO GAMES' TABLE     //
     public function insert()
     {
-        // TODO: Implement insert() method.
+        //$this->query="INSERT INTO games (id_user, games_json, results_json) VALUES('$_SESSION['uid']', '{$games}', {$results});";
+        //$this->single_query();
     }
 
     //      DELETE A GAME FROM GAMES TABLE      //      unused now
@@ -46,7 +47,7 @@ class GamesManager extends DBConnection
     {
         $data = $this->select();
         $result = array();
-        for ($i = 0; $i < count($data) ;$i++)
+        for ($i = 0; $i < count($data); $i++)
         {
             array_push($result, [
                 "title" => $data[$i]["title"],
@@ -55,6 +56,17 @@ class GamesManager extends DBConnection
             ]);
         }
         return array($result);
+    }
+
+
+    //      FUNCTION THAT INSERT THE GAME DATA INTO GAMES' TABLE    //
+    public function InsertGame($games_json, $results_json): array
+    {
+        $games = json_decode($games_json);
+        $results = $results_json;
+        //$this->insert($games, $results);
+        //return array("inserted" => true);
+        return array("games_json" => $games, "results_json" => $results);
     }
 
 

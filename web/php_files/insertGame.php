@@ -5,9 +5,13 @@
     header('Content-type: application/json');
     require_once(__DIR__ . "/../../server/Managers/GamesManager.php");
 
+    //$data = array($_POST['games_json'], $_POST['results_json']);
+    $games_json = $_POST['games_json'];
+    $results_json = $_POST['results_json'];
+
     /*========We create the GamesManager Object==========*/
     $GamesManager = new GamesManager();
 
     /*========We call the database to recive the account==========*/
-    $data = $GamesManager->CreateGame();
+    $data = $GamesManager->InsertGame($games_json, $results_json);
     echo json_encode($data);

@@ -24,11 +24,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //      MODAL THINGS    //
-let dataJson = null;
+let game_json = null;
+let results_json = null;
 let movieCounter = 0;
 let modalTitle = document.getElementById("title-span");
 let modalImg = document.getElementById("img-modal");
-
+let modalButtons = [
+    b0 = document.getElementById("r0"),
+    b1 = document.getElementById("r1"),
+    b2 = document.getElementById("r2"),
+    b3 = document.getElementById("r3"),
+    b4 = document.getElementById("r4")
+];
+for (let i = 0; i < modalButtons.length; i++)
+{
+    modalButtons[i].addEventListener("click", () => {
+        NextQuestion();
+    });
+}
 
 
 
@@ -37,9 +50,9 @@ buttonNewGame.addEventListener("click", () => {
     fetch(PATH + "php_files/games.php")
             .then(res => res.json())
             .then(data => {
-                dataJson = data[0];
+                game_json = data[0];
                 movieCounter = 0;
-                LoadMovieIntoModal(dataJson[movieCounter]);
+                LoadMovieIntoModal(game_json[movieCounter]);
             });
         });
 
@@ -55,19 +68,30 @@ function LoadMovieIntoModal(movieInfo)
 
     for (let i = 0; i < years.length; i++)
     {
-        button = document.getElementById("r" + i);
-        button.innerHTML = years[i];
-        button.addEventListener("click", () => {
-            movieCounter++;
-            if(movieCounter <= 4)
-            {
-                LoadMovieIntoModal(dataJson[movieCounter]);
-            }
-            else
-            {
-                // close modal
-            }
-        })
+        modalButtons[i].innerHTML = years[i];
+    }
+}
+
+function NextQuestion()
+{
+    movieCounter++;
+    if(movieCounter <= 4)
+    {
+        LoadMovieIntoModal(game_json[movieCounter]);
+    }
+    else
+    {
+        // close modal and send json to db
+        let data = new FormData();
+        data.append('games_json', game_json);
+        data.append('results_json', results_json);
+
+        fetch(PATH + "php_files/insertGame.php",
+        { method: 'POST', body: data}
+        ).then(res => res.json()
+        ).then(data => {
+            console.log(data);
+        });
     }
 }
 
