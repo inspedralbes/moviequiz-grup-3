@@ -3,7 +3,8 @@ require_once(__DIR__."/../DBConnection.php");
 session_start();
 class GamesManager extends DBConnection
 {
-    
+    private $games = null;
+    private $results = null;
     //      ARRAY FOR CREATING YEARS' ARRAY     //
     private $addToYears = array(-15 , -10 , -5 , -2  , 2 , 5 , 10 ,15);
 
@@ -25,8 +26,8 @@ class GamesManager extends DBConnection
     //      INSERT GAMES' JSON INTO GAMES' TABLE     //
     public function insert()
     {
-        //$this->query="INSERT INTO games (id_user, games_json, results_json) VALUES('$_SESSION['uid']', '{$games}', {$results});";
-        //$this->single_query();
+        $this->query="INSERT INTO games (id_user, games_json, results_json) VALUES({$_SESSION['uid']}', '{$this->games}', {$this->results});";
+        $this->single_query();
     }
 
     //      DELETE A GAME FROM GAMES TABLE      //      unused now
@@ -62,11 +63,11 @@ class GamesManager extends DBConnection
     //      FUNCTION THAT INSERT THE GAME DATA INTO GAMES' TABLE    //
     public function InsertGame($games_json, $results_json): array
     {
-        $games = json_decode($games_json);
-        $results = $results_json;
-        //$this->insert($games, $results);
+        $this->games = json_decode($games_json);
+        $this->results = json_decode($results_json);
+        $this->insert();
         //return array("inserted" => true);
-        return array("games_json" => $games, "results_json" => $results);
+        return array("games_json" => $this->games, "results_json" => $this->results);
     }
 
 

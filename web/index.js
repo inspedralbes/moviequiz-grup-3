@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 //      MODAL THINGS    //
-let game_json = null;
+let games_json = null;
 let results_json = null;
 let movieCounter = 0;
 let modalTitle = document.getElementById("title-span");
@@ -50,9 +50,9 @@ buttonNewGame.addEventListener("click", () => {
     fetch(PATH + "php_files/games.php")
             .then(res => res.json())
             .then(data => {
-                game_json = data[0];
+                games_json = data[0];
                 movieCounter = 0;
-                LoadMovieIntoModal(game_json[movieCounter]);
+                LoadMovieIntoModal(games_json[movieCounter]);
             });
         });
 
@@ -77,15 +77,14 @@ function NextQuestion()
     movieCounter++;
     if(movieCounter <= 4)
     {
-        LoadMovieIntoModal(game_json[movieCounter]);
+        LoadMovieIntoModal(games_json[movieCounter]);
     }
     else
     {
         // close modal and send json to db
         let data = new FormData();
-        data.append('games_json', JSON.stringify(game_json));
-        data.append('results_json', results_json);
-
+        data.append('games_json', JSON.stringify(games_json));
+        data.append('results_json', JSON.stringify(results_json));
         fetch(PATH + "php_files/insertGame.php",
         { method: 'POST', body: data}
         ).then(res => res.json()

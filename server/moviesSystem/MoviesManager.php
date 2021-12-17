@@ -135,7 +135,7 @@ class MoviesManager extends DBConnection{
     public function insertFeedback()
     {
         // TODO: Implement insert() method.
-        $this->query="INSERT INTO feedbacks (id_movie, id_user) VALUES('{$this->mid}', '{$_SESSION['uid']}');"; //'{$_SESSION['uid']}'
+        $this->query="INSERT INTO feedbacks (id_movie, id_user) VALUES('{$this->mid}', '{$_SESSION['uid']}');";
         $this->single_query();
     }
 
