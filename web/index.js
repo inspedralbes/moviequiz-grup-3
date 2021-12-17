@@ -23,17 +23,53 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+//      MODAL THINGS    //
+let dataJson = null;
+let movieCounter = 0;
+let modalTitle = document.getElementById("title-span");
+let modalImg = document.getElementById("img-modal");
 
+
+
+
+//      JSON GAME QUESTIONS     //
 buttonNewGame.addEventListener("click", () => {
     fetch(PATH + "php_files/games.php")
             .then(res => res.json())
             .then(data => {
-                console.log(data[0]);
+                dataJson = data[0];
+                movieCounter = 0;
+                LoadMovieIntoModal(dataJson[movieCounter]);
             });
         });
 
 
+function LoadMovieIntoModal(movieInfo)
+{
+    let title = movieInfo['title'];
+    let img = movieInfo['poster'];
+    let years = movieInfo['years'];
 
+    modalTitle.innerHTML = title;
+    modalImg.src = img;
+
+    for (let i = 0; i < years.length; i++)
+    {
+        button = document.getElementById("r" + i);
+        button.innerHTML = years[i];
+        button.addEventListener("click", () => {
+            movieCounter++;
+            if(movieCounter <= 4)
+            {
+                LoadMovieIntoModal(dataJson[movieCounter]);
+            }
+            else
+            {
+                // close modal
+            }
+        })
+    }
+}
 
 function LoadInfoUser(user){
     for (var i = 0; i < usernameElements.length; i++) {

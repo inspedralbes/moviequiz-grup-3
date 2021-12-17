@@ -3,13 +3,17 @@ require_once(__DIR__."/../DBConnection.php");
 
 class GamesManager extends DBConnection
 {
+    //      ARRAY FOR CREATING YEARS' ARRAY     //
     private $addToYears = array(-15 , -10 , -5 , -2  , 2 , 5 , 10 ,15);
+
     #region magical functions
     public function  __construct()
     {
         $this->db_name = "a19albchavas_tardium";
     }
     #endregion
+    
+    //      SELECT ALL FROM MOVIES      //
     public function select(): array
     {
         // TODO: Implement select() method.
@@ -18,21 +22,26 @@ class GamesManager extends DBConnection
         return $this->rows;
     }
 
+    //      INSERT GAMES' JSON INTO GAMES' TABLE     //     unused now
     public function insert()
     {
         // TODO: Implement insert() method.
     }
 
+    //      DELETE A GAME FROM GAMES TABLE      //      unused now
     public function delete()
     {
         // TODO: Implement delete() method.
     }
 
+    //      UPDATE SMTH FROM A GAME     //      unused now (and ever(?))
     public function update()
     {
         // TODO: Implement update() method.
     }
 
+
+    //      FUNCTION THAT CREATES A GAME AND SENDS IT TO JS      //
     public function CreateGame(): array
     {
         $data = $this->select();
@@ -42,12 +51,14 @@ class GamesManager extends DBConnection
             array_push($result, [
                 "title" => $data[$i]["title"],
                 "poster" => $data[$i]["img_path"],
-                "answers" => $this->GenerateYears($data[$i]["year"])
+                "years" => $this->GenerateYears($data[$i]["year"])
             ]);
         }
         return array($result);
     }
 
+
+    //      FUNCTION THAT GENERATES THE ANSWERS' ARRAY      //
     private function GenerateYears($data)
     {
         shuffle($this->addToYears);
