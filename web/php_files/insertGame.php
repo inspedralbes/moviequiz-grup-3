@@ -9,9 +9,13 @@
     $games_json = $_POST['games_json'];
     $results_json = $_POST['results_json'];
 
+    
     /*========We create the GamesManager Object==========*/
     $GamesManager = new GamesManager();
-
+    
+    /*========Know which is the score==========*/
+    
+    
     /*========We call the database to recive the account==========*/
     $data = $GamesManager->InsertGame($games_json, $results_json);
     echo json_encode($data);

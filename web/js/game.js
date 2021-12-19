@@ -37,6 +37,10 @@ buttonNewGame.addEventListener("click", () => {
     .then(res => res.json())
     .then(data => {
         games_json = null;
+        results_json = {
+            "pressed": [],
+            "score": 0
+        }
         games_json = data[0];
         movieCounter = 0;
         LoadMovieIntoModal(games_json[movieCounter]);
@@ -61,13 +65,13 @@ function LoadMovieIntoModal(movieInfo)
 function NextQuestion(buttonPressed)
 {
     movieCounter++;
+    results_json["pressed"].push(buttonPressed);
     if(movieCounter < games_json.length)
     {
         LoadMovieIntoModal(games_json[movieCounter]);
     }
     else
     {
-        
         let data = new FormData();
         data.append('games_json', JSON.stringify(games_json));
         data.append('results_json', JSON.stringify(results_json));

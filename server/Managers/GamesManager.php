@@ -3,6 +3,7 @@ require_once(__DIR__."/../DBConnection.php");
 session_start();
 class GamesManager extends DBConnection
 {
+    private $gameInDb = null;
     private $games = null;
     private $results = null;
     //      ARRAY FOR CREATING YEARS' ARRAY     //
@@ -22,11 +23,20 @@ class GamesManager extends DBConnection
         $this->multiple_query();
         return $this->rows;
     }
+    //      SELECT SINGLE GAME     //
+    public function selectGame(): array
+    {
+        $this->query="SELECT * FROM games 
+        WHERE id_user='{$_SESSION['uid']}' AND games_json='{$this->games}';";
+        $this->multiple_query();
+        return $this->rows;
+    }
 
     //      INSERT GAMES' JSON INTO GAMES' TABLE     //
     public function insert()
     {
-        $this->query="INSERT INTO games (id_user, games_json, results_json) VALUES('{$_SESSION['uid']}', '{$this->games}', '{$this->results}');";
+        $this->query="INSERT INTO games (id_user, games_json, results_json)
+        VALUES('{$_SESSION['uid']}', '{$this->games}', '{$this->results}');";
         $this->single_query();
     }
 
@@ -36,10 +46,20 @@ class GamesManager extends DBConnection
         // TODO: Implement delete() method.
     }
 
-    //      UPDATE SMTH FROM A GAME     //      unused now (and ever(?))
+    //      UPDATE FROM A GAME     //       unused now
     public function update()
     {
         // TODO: Implement update() method.
+    }
+
+    //      UPDATE FROM A GAME     //
+    public function updateScore($id_game)
+    {
+        // TODO: Implement update() method.
+        $this->query="UPDATE games 
+        SET results_json = 
+        WHERE id_user='{$id_game}';";
+        $this->single_query();
     }
 
 
@@ -65,11 +85,27 @@ class GamesManager extends DBConnection
     {
         $this->games = $games_json;
         $this->results = $results_json;
-        $this->insert();
-        $this->games = json_decode($games_json);
-        $this->results = json_decode($results_json);
-        //return array("inserted" => true);
-        return array("games_json" => $this->games, "results_json" => $this->results);
+        $game = $this->selectGame();
+        if($game =! null)
+        {
+            //      UPDATE SCORE FROM THE DATABASE      //
+            $this->updateScore($game["id_game"]);
+            // USED FOR DEBUGGING
+            return array("id_game" => $game["id_game"]);
+            // USED FOR DEBUGGING
+        }
+        else
+        {
+            //      INSERT NEW GAME     //
+            $this->insert();
+            //return array("inserted" => true);
+
+            // USED FOR DEBUGGING
+            $this->games = json_decode($games_json);
+            $this->results = json_decode($results_json);
+            return array("games_json" => $this->games, "results_json" => $this->results);
+            // USED FOR DEBUGGING
+        }
     }
 
 
