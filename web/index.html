@@ -41,10 +41,6 @@
                     <div class="background">
                         <img src="img/defaultBackground.jpg">
                     </div>
-                    <a href="#user"><img class="circle" src="img/defaultUserImage.png"></a>
-                    <a href="#name"><span class="white-text name text-username">Username</span></a>
-                    <a href="#email"><span class="white-text email text-email">random_email@gmail.com</span></a>
-                    <a href="#score"><span class="white-text">Your score: </span><span class="white-text text-score">0</span></a>
                 </div></li>
                 <li><a id="nav-games"><i class="material-icons">videogame_asset</i>Partides</a></li>
                 <li><a href="#!">Second Link</a></li>
@@ -69,7 +65,7 @@
 
             <!--    SEARCH CONTAINER      -->
             <div id='Search'>
-                <div class="container">
+                <div class="">
                     <div class="row">
                         <div class="col s12 input-field"><input id="movie-input" type="text"></div>
                             <div class="col s12">
@@ -80,7 +76,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container">
+                    <div class="">
                         <div id="movie-container" class="row"></div>
                     </div>
                 </div>
@@ -186,6 +182,7 @@
                     <button class="btn-block btn waves-effect waves-light deep-purple lighten-1 modal-trigger" type="button"
                                     id="new-game-button" name="new-game-button" href="#question-modal">Crear joc</button>
                     <h2>Llista de jocs</h2>
+
                 </div>
             </div>
 
@@ -198,14 +195,18 @@
                     <a class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
                 </div>
                 <div class="modal-content">
-                    <h4>De quin any és la pel·lícula <span id="title-span"></span>?</h4>
-                    <div class="center">
-                        <img src="" alt="img_path" class="center" id="img-modal">                  
-                        <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r0"></button>
-                        <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r1"></button>
-                        <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r2"></button>
-                        <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r3"></button>
-                        <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button" id="r4"></button>
+                    <h4 class="center">De quin any és la pel·lícula <span id="title-span"></span>?</h4>
+                    <div class="row center"> <!-- valign-wrapper for align vertically -->
+                        <div class="col s12">
+                            <img src="" alt="img_path" class="center" id="img-modal">
+                        </div> 
+                        <div class="col s12">
+                            <button class="answer-button btn waves-effect waves-light deep-purple lighten-1" type="button" id="r0"></button>
+                            <button class="answer-button btn waves-effect waves-light deep-purple lighten-1" type="button" id="r1"></button>
+                            <button class="answer-button btn waves-effect waves-light deep-purple lighten-1" type="button" id="r2"></button>
+                            <button class="answer-button btn waves-effect waves-light deep-purple lighten-1" type="button" id="r3"></button>
+                            <button class="answer-button btn waves-effect waves-light deep-purple lighten-1" type="button" id="r4"></button>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -245,7 +246,7 @@
                     <h5 class="white-text">Footer Content</h5>
                     <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
                 </div>
-                <div class="col m6 s12">
+                <div class="col s12 m6">
                     <h5 class="white-text">Links</h5>
                     <ul>
                         <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
@@ -254,7 +255,7 @@
                         <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
                     </ul>
                 </div>
-                <div class="col m6 s12">
+                <div class="col s12 m6">
                     <h5 class="white-text">Links</h5>
                     <ul>
                         <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
@@ -294,6 +295,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="text/javascript" src="./movieSearch.js"></script>
     <script type="text/javascript" src="./index.js"></script>
+    <script type="text/javascript" src="./game.js"></script>
     <script type="text/javascript" src="./authentication.js"></script>
     <!-- <script src="main.js"></script> -->
 </body>

@@ -23,7 +23,7 @@ searchButton.addEventListener(`click`,()=>{
             cardImage.classList.add("card-image","waves-effect","waves-block","waves-light");
             
             let imageElement = document.createElement('img');
-            imageElement.classList.add("activator")
+            imageElement.classList.add("activator", "card-image-size");
             imageElement.src = movie.Poster;
 
             /////* CARD CONTENT */////
@@ -31,12 +31,8 @@ searchButton.addEventListener(`click`,()=>{
             cardContent.classList.add("card-content");
 
             let movieTitleContent = document.createElement('span');
-            movieTitleContent.classList.add("card-title","activator","grey-text","text-darken-4");
+            movieTitleContent.classList.add("card-title","activator","grey-text","text-darken-4", "card-footer-size", "center");
             movieTitleContent.innerHTML = movie.Title;
-
-            let iconContent = document.createElement('i');
-            iconContent.classList.add("material-icons","right");
-            iconContent.innerHTML = "more_vert";
             
 
             /////* CARD REVEAL */////
@@ -86,7 +82,6 @@ searchButton.addEventListener(`click`,()=>{
             movieTitleReveal.append(iconReveal);
             cardReveal.append(movieTitleReveal,infoMovieYear,infoMovieType,btn, infoMovie);
             //card-content appends
-            movieTitleContent.append(iconContent);
             cardContent.append(movieTitleContent);
             //card-image appends
             cardImage.append(imageElement);

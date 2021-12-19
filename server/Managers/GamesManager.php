@@ -26,7 +26,7 @@ class GamesManager extends DBConnection
     //      INSERT GAMES' JSON INTO GAMES' TABLE     //
     public function insert()
     {
-        $this->query="INSERT INTO games (id_user, games_json, results_json) VALUES({$_SESSION['uid']}', '{$this->games}', {$this->results});";
+        $this->query="INSERT INTO games (id_user, games_json, results_json) VALUES('{$_SESSION['uid']}', '{$this->games}', '{$this->results}');";
         $this->single_query();
     }
 
@@ -63,9 +63,11 @@ class GamesManager extends DBConnection
     //      FUNCTION THAT INSERT THE GAME DATA INTO GAMES' TABLE    //
     public function InsertGame($games_json, $results_json): array
     {
+        $this->games = $games_json;
+        $this->results = $results_json;
+        $this->insert();
         $this->games = json_decode($games_json);
         $this->results = json_decode($results_json);
-        $this->insert();
         //return array("inserted" => true);
         return array("games_json" => $this->games, "results_json" => $this->results);
     }
