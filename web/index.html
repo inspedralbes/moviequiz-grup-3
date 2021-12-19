@@ -42,6 +42,10 @@
                         <div class="background">
                             <img src="img/defaultBackground.jpg">
                         </div>
+                        <a href="#user"><img class="circle" src="img/defaultUserImage.png"></a>
+                        <a href="#name"><span class="white-text name text-username">Username</span></a>
+                        <a href="#email"><span class="white-text email text-email">random_email@gmail.com</span></a>
+                        <a href="#score"><span class="white-text">Your score: </span><span class="white-text text-score">0</span></a>
                     </div>
                 </li>
                 <li><a id="nav-games"><i class="material-icons">videogame_asset</i>Partides</a></li>
@@ -183,8 +187,11 @@
                 <div class="container">
                     <button class="btn-block btn waves-effect waves-light deep-purple lighten-1 modal-trigger" type="button"
                                     id="new-game-button" name="new-game-button" href="#question-modal">Crear joc</button>
+                    <input id="game-name" type="text">
                     <h2>Llista de jocs</h2>
+                    <div class="row" id="user-game-container">
 
+                    </div>
                 </div>
             </div>
 
@@ -197,8 +204,8 @@
                     <a class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
                 </div>
                 <div class="modal-content">
-                    <h4 class="center">De quin any és la pel·lícula <span id="title-span"></span>?</h4>
-                    <div class="row center"> <!-- valign-wrapper for align vertically -->
+                    <div id="start-game" class="row center">
+                        <h4 id="question-title" class="center">De quin any és la pel·lícula <span id="title-span"></span>?</h4>
                         <div class="col s12">
                             <img src="" alt="img_path" class="center" id="img-modal">
                         </div> 
@@ -208,7 +215,11 @@
                             <button class="answer-button btn waves-effect waves-light deep-purple lighten-1" type="button" id="r2"></button>
                             <button class="answer-button btn waves-effect waves-light deep-purple lighten-1" type="button" id="r3"></button>
                             <button class="answer-button btn waves-effect waves-light deep-purple lighten-1" type="button" id="r4"></button>
-                        </div> 
+                        </div>
+                    </div>
+                    <div id="end-game" class="center" hidden>
+                        <h4 id="end-game-title">JOC ACABAT</h4>
+                        <h3 id="end-game-score">Has encertat <span id="score-span"></span>/5 preguntes!</h3>
                     </div>
                 </div>
             </div>

@@ -7,8 +7,6 @@ window.onload = function() {
         {
             user = data.user[0];
             LoadInfoUser(user);
-
-            console.log(user);
             isLogged();
         }    
         else
