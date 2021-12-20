@@ -154,7 +154,12 @@ class AccountManager extends DBConnection {
         $this->multiple_query();
         return $this->rows;
     }
-
+    public function selectLeaderboard($quantityOfUsers)
+    {
+        $this->query="SELECT * FROM accounts ORDER BY score DESC LIMIT {$quantityOfUsers};";
+        $this->multiple_query();
+        return $this->rows;
+    }
     public function insert()
     {
         $passwordHashed = password_hash($this->password, PASSWORD_DEFAULT);
