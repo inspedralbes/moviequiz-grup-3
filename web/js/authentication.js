@@ -44,6 +44,14 @@ const loginEmail = document.getElementById("email");
 const loginPassword = document.getElementById("password");
 const loginButton = document.getElementById("login-button");
 
+// Click on login when you click "Enter" in the keyboard
+loginPassword.addEventListener("keyup", (event) => {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        loginButton.click();
+    }
+});
+
 /*==========We add the events needed for login==========*/
 loginButton.addEventListener('click', () => {
     Login();

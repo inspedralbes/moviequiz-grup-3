@@ -23,7 +23,7 @@
         
         $data = $GLOBALS['AccountManager']->select();
         if (($data != null) && (password_verify($GLOBALS['password'], $data[0]['password']))) {
-            session_start();
+            if ( session_id() === '' ) session_start();
             $_SESSION["uid"] = $data[0]['id_user'];
             return array("user" => $data, "session_id" => $_SESSION["uid"]);
         }

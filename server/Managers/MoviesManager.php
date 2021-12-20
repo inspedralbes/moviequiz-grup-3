@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__."/../DBConnection.php");
-session_start();
+if ( session_id() === '' ) session_start();
 class MoviesManager extends DBConnection{
 
     private $mid = null;

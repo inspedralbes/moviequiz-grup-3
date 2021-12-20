@@ -44,8 +44,8 @@ buttonNewGame.addEventListener("click", () => {
         modalEndGame.hidden = true;
         games_json = null;
         results_json = {
-            "name": gameNameInput.value,
             "pressed": [],
+            "name": gameNameInput.value,
             "score": 0
         }
         games_json = data[0];
@@ -85,10 +85,20 @@ function NextQuestion(buttonPressed)
         data.append('games_json', JSON.stringify(games_json));
         data.append('results_json', JSON.stringify(results_json));
         fetch(PATH + "php_files/insertGame.php",
-        { method: 'POST', body: data}
+        { method: 'POST', body: data }
         ).then(res => res.json()
-        ).then(data => {
-            scoreSpan.innerHTML = data.score;
+        ).then(score => {
+            //console.log(score.score);
+            console.log(score);
+            let userScore = new FormData();
+            userScore.append('score', score.score);
+            fetch(PATH + "php_files/updateUserScore.php",
+            { method: 'POST', body: userScore }
+            ).then(res => res.json()
+            ).then(data => {
+                console.log(data);
+            });
+            scoreSpan.innerHTML = score.score;
         });
     }
 }

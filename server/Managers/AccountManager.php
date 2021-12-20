@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/../DBConnection.php");
 require_once(__DIR__."/../IAccounts.php");
+if ( session_id() === '' ) session_start();
 
 class AccountManager extends DBConnection {
 
@@ -150,7 +151,7 @@ class AccountManager extends DBConnection {
 
     public function selectById(): array
     {
-        $this->query="SELECT * FROM accounts WHERE id_user='{$this->uid}';";
+        $this->query="SELECT * FROM accounts WHERE id_user='{$_SESSION['uid']}';";
         $this->multiple_query();
         return $this->rows;
     }
@@ -171,7 +172,19 @@ class AccountManager extends DBConnection {
 
     public function update()
     {
-        // TODO: Implement selectAll() method.
+        // TODO: Implement update() method.
+    }
+
+    public function updateUserScore($userNewScore)
+    {
+        // TODO: Implement update() method.
+        $user = $this->selectById();
+        $newScore = intval($user[0]["score"]) + $userNewScore;
+        $this->query="UPDATE accounts 
+        SET score = '{$newScore}'
+        WHERE id_user='{$_SESSION['uid']}';";
+        $this->single_query();
+        return array("userNewScore" => intval($userNewScore), "user" => $user[0]["score"], "newScore" => $newScore);
     }
 
     public function delete()

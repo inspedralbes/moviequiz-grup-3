@@ -11,7 +11,7 @@ Aquest és el segon projecte transversal de 2n DAW. Fem una pàgina web en forma
 Utilitzem una base de dades en *mysql* al labs, en la qual tenim tota la informació d'usuaris, pel·lícules, els feedbacks que afegeixen els usuaris i els jocs.
 
 ## Esquema de carpetes
-/seguiment: conté les actes
+- /seguiment: conté les actes
 
 - /server
 

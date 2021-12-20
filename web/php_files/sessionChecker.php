@@ -5,7 +5,7 @@
     header('Content-type: application/json');
     require_once(__DIR__ . "/../../server/Managers/AccountManager.php");
     $AccountManager = new AccountManager();
-    session_start();
+    if ( session_id() === '' ) session_start();
     if(isset($_SESSION["uid"]))
     {
         $GLOBALS['AccountManager']->setUid($_SESSION["uid"]);

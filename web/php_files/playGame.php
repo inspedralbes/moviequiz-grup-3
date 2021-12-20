@@ -8,9 +8,6 @@
     /*========We create the GamesManager Object==========*/
     $GamesManager = new GamesManager();
 
-    if(isset($_SESSION['uid']))
-    {
-        /*========We call the database to recive the account==========*/
-        $data = $GamesManager->selectUserGames();
-        echo json_encode($data);
-    }
+    /*========We call the database to recive the account==========*/
+    $data = $GamesManager->PlayExistingGame();
+    echo json_encode($data);

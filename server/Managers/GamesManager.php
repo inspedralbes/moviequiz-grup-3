@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__."/../DBConnection.php");
-session_start();
+if ( session_id() === '' ) session_start();
 class GamesManager extends DBConnection
 {
     private $gameInDb = null;
@@ -28,25 +28,16 @@ class GamesManager extends DBConnection
     public function selectMovieYears($movies_id): array
     {
         $this->query="SELECT year FROM movies WHERE id_movie='{$movies_id[0]}'
-        UNION
+        UNION ALL
         SELECT year FROM movies WHERE id_movie='{$movies_id[1]}'
-        UNION
+        UNION ALL
         SELECT year FROM movies WHERE id_movie='{$movies_id[2]}'
-        UNION
+        UNION ALL
         SELECT year FROM movies WHERE id_movie='{$movies_id[3]}'
-        UNION
+        UNION ALL
         SELECT year FROM movies WHERE id_movie='{$movies_id[4]}';";
         $this->multiple_query();
         return $this->rows;
-
-
-        // $quantityOfmovies = (count($movies_id) - 1);
-        // $moviesQuery = "";
-        // for ($x = 0; $x <= $quantityOfmovies; $x++) {
-        //     $moviesQuery .= "'{$movies_id[$x]}'";
-        //     if($x != $quantityOfmovies)
-        //         $moviesQuery .= ",";
-        // }
     }
 
     //      SELECT ALL USER'S GAMES     //
@@ -87,12 +78,12 @@ class GamesManager extends DBConnection
     }
 
     //      UPDATE FROM A GAME     //
-    public function updateScore($id_game)
+    public function updateScore($id_game, $results)
     {
         // TODO: Implement update() method.
         $this->query="UPDATE games 
-        SET results_json = ''
-        WHERE id_user='{$id_game}';";
+        SET results_json = '{$results}'
+        WHERE id_game='{$id_game}';";
         $this->single_query();
     }
 
@@ -138,11 +129,11 @@ class GamesManager extends DBConnection
                 $score++;
             }
         }
-        $game = $this->selectGame();
+        $game = json_decode(implode($this->selectGame()), true);
         if(!empty($game))
         {
             //      UPDATE SCORE IN THE DATABASE      //
-            $this->updateScore($game["id_game"]);
+            $this->updateScore($game["id_game"], $results_json);
         }
         else
         {
@@ -152,6 +143,10 @@ class GamesManager extends DBConnection
         return array("score" => $score);
     }
 
+    public function PlayExistingGame()
+    {
+        //before button
+    }
 
     //      FUNCTION THAT GENERATES THE ANSWERS' ARRAY      //
     private function GenerateYears($data)

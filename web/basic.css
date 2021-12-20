@@ -76,3 +76,6 @@ table.ranking>tbody>tr:nth-child(3) {
 .round_img {
   border-radius: 50%;
 }
+blockquote{
+  border-left: 5px solid #7e57c2 !important;
+}

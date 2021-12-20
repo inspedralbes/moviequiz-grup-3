@@ -83,38 +83,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// VA, HAGO LA LISTA DE PELICULAS VA.
 fetch(PATH + "php_files/loadUserGames.php")
     .then(res => res.json())
     .then(data => {
         console.log(data)
         userGameContainer.innerHTML='';
-        
-        data.forEach(game => {
-            /////* CARD */////
-            let column = document.createElement('div');
-            column.classList.add("col","s12","m6","l4");
-            let card = document.createElement('div');
-            card.classList.add("game-card");
+        if(data != null)
+        {
+            userGameContainer.innerHTML='';
+            data.forEach(game => {
+                /////* CARD */////
+                let column = document.createElement('div');
+                column.classList.add("col","s12","m6","l3");
+    
+                let card = document.createElement('div');
+                card.classList.add("game-card");
 
-            /////* CARD CONTENT */////
-            let cardContent = document.createElement('div');
-            cardContent.classList.add("game-card-content");
+                /////* CARD IMAGE */////
+                let cardImage = document.createElement('div');
+                cardImage.classList.add("game-card-image","waves-effect","waves-block","waves-light");
+                
+                let imageElement = document.createElement('img');
+                imageElement.classList.add("card-image-size");
+                imageElement.src = "../img/defaultUserImage.png";
+    
+                /////* CARD CONTENT */////
+                let cardContent = document.createElement('div');
+                cardContent.classList.add("game-card-content");
+    
+                let gameTitleContent = document.createElement('span');
+                gameTitleContent.classList.add("game-card-title","grey-text","text-darken-4", "card-footer-size", "center");
+                gameTitleContent.innerHTML = game.name;
+    
+                let icon = document.createElement('i');
+                icon.classList.add("material-icons", "prefix");
+                icon.innerHTML = "videogame_asset";
+    
+                let btn = document.createElement('button');
+                btn.classList.add("btn","waves-effect", "waves-light", "red", "lighten-1");
+                btn.innerText = "Jugar";
+                btn.addEventListener("click",() => {
+                    fetch(PATH + "php_files/playGame.php",
+                        { method: 'POST', body: "" })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                        });
+                    }
+                );
 
-            let gameTitleContent = document.createElement('span');
-            gameTitleContent.classList.add("card-title","grey-text","text-darken-4", "card-footer-size", "center");
-            gameTitleContent.innerHTML = game.name;
-
-            let icon = document.createElement('i');
-            icon.classList.add("material-icons", "prefix");
-            icon.innerHTML = "videogame_asset";
-
-            gameTitleContent.append(icon);
-            cardContent.append(gameTitleContent);
-            card.append(cardContent);
-            column.append(card);
-            userGameContainer.append(column);
-        });
+                gameTitleContent.append(btn, icon);
+                cardContent.append(gameTitleContent);
+                cardImage.append(imageElement);
+                card.append(cardImage, cardContent);
+                column.append(card);
+                userGameContainer.append(column);
+            });
+        }
     });
 
 
