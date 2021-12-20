@@ -9,6 +9,16 @@ function RemoveFavMovie(){
     
 }
 
+
+// INIT SIDE NAV //
+document.addEventListener('DOMContentLoaded', function () {
+    var textNeedCount = document.querySelectorAll('#reg-username, #textarea1');
+    M.CharacterCounter.init(textNeedCount);
+    var elems = document.querySelectorAll('.sidenav');
+    var instance = M.Sidenav.init(elems);
+})
+
+
 //      CONTAINERS      //
 let mainContainer = document.getElementById("main-container");
 let userGameContainer = document.getElementById("user-game-container");
@@ -18,6 +28,7 @@ let landing_container = document.getElementById("landing-container");
 let search_container = document.getElementById("Search");
 let game_container = document.getElementById("game-container");
 let loading_container = document.getElementById("loadingSpinner")
+let mymovies_container = document.getElementById("mymovies-container");
 
 // BUTTON //
 
@@ -25,6 +36,7 @@ let account_button = document.getElementById("account-button");
 let tardium_button = document.getElementById("tardium-button");
 let nav_games = document.getElementById("nav-games");
 let nav_search = document.getElementById("nav-search");
+let nav_mymovies = document.getElementById("nav-my-movies");
 
 
 // FUNCIONALIDAD MENU NAV //
@@ -36,6 +48,7 @@ function hideAll(){
     search_container.hidden = true;
     game_container.hidden = true;
     loading_container.hidden = true;
+    mymovies_container.hidden = true;
 };
 // CLICK FUNCTIONS //
 account_button.addEventListener('click',function(){
@@ -53,6 +66,10 @@ nav_games.addEventListener('click',function(){
 nav_search.addEventListener('click',function(){
     hideAll();
     search_container.hidden = false;
+})
+nav_mymovies.addEventListener('click',function(){
+    hideAll();
+    mymovies_container.hidden = false;
 })
 
 

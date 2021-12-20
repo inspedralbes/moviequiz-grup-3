@@ -252,11 +252,6 @@ function isLogged(){
     mainContainer.hidden = false;
 }
 
-///MATERIALIZE JAVASCRIPTS
-document.addEventListener('DOMContentLoaded', function () {
-    var textNeedCount = document.querySelectorAll('#reg-username, #textarea1');
-    M.CharacterCounter.init(textNeedCount);
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-})
+
+
 

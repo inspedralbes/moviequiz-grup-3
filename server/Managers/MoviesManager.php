@@ -99,7 +99,13 @@ class MoviesManager extends DBConnection{
     #endregion
 
     /////////SQL FUNCTIONS///////////////////////////////////////////////////////////////////////////////////////////////
-
+    public function selectMyMovies()
+    {
+        $this->query="SELECT * FROM movies WHERE id_movie in (
+            SELECT id_movie FROM feedbacks WHERE id_user='{$_SESSION['uid']}');";
+        $this->multiple_query();
+        return $this->rows;
+    }
     public function selectAllMovies()
     {
         // TODO: Implement selectAll() method.

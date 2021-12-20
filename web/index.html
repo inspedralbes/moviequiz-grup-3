@@ -18,7 +18,7 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#" id = "tardium-button" class="brand-logo">Tardium</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li id = "account-button">SignUp/Register</li>
+                    <li id = "account-button" ><a href="#">SignUp/Register</a></li>
                     <li><a href="badges.html">Components</a></li>
                     <li><a href="collapsible.html">JavaScript</a></li>
                 </ul>
@@ -36,7 +36,7 @@
         <div id="main-container"class="container" hidden>
             
             <!--    SIDE NAV    -->
-            <ul id="slide-out" class="sidenav">
+            <ul id="slide-out" class="sidenav sidenav-close">
                 <li>
                     <div class="user-view">
                         <div class="background">
@@ -48,8 +48,9 @@
                         <a href="#score"><span class="white-text">Your score: </span><span class="white-text text-score">0</span></a>
                     </div>
                 </li>
-                <li><a id="nav-games"><i class="material-icons">videogame_asset</i>Partides</a></li>
-                <li><a id="nav-search"><i class="material-icons">search</i>Buscador</a></li>
+                <li><a id="nav-games" href="#"><i class="material-icons">videogame_asset</i>Partides</a></li>
+                <li><a id="nav-search" href="#"><i class="material-icons">search</i>Buscador</a></li>
+                <li><a id="nav-my-movies" href="#"><i class="material-icons">movie_filter</i>Les Meves Pelicules</a></li>
                 <li><a href="#!">Second Link</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Subheader</a></li>
@@ -206,6 +207,7 @@
                     </div>
                 </div>
             </div>
+        </div>
 
             <!--    LANDING CONTAINER      -->
             <div class="container" id="landing-container">  <!-- hidden -->
@@ -254,7 +256,10 @@
         </div>
     
 
-
+        <!--    MY-FILMS CONTAINER      -->
+        <div class="container row" id="mymovies-container">
+            
+        </div>
 
         <!--    LOADING CONTAINER      -->
         <div class="container loading" id="loadingSpinner" hidden>
@@ -355,5 +360,6 @@
     <script type="text/javascript" src="./js/game.js"></script>
     <script type="text/javascript" src="./js/authentication.js"></script>
     <script type="text/javascript" src="./js/leaderboard.js"></script>
+    <script type="text/javascript" src="./js/myMovies.js"></script>
 </body>
 </html>
