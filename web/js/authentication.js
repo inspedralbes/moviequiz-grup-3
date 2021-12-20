@@ -7,6 +7,7 @@ window.onload = function() {
         {
             user = data.user[0];
             LoadInfoUser(user);
+            LoadExistingGames();
             isLogged();
         }    
         else
@@ -16,6 +17,15 @@ window.onload = function() {
     });
 }
 
+//      MODAL INITIALIZATION        //
+document.addEventListener('DOMContentLoaded', function () {
+    var authModal = document.querySelector('#authentication-modal');
+    M.Modal.init(authModal, {
+        dismissible: false,
+        opacity: 0.7,
+        preventScrolling: true
+    });
+});
 
 /*====== CONTAINERS =======*/
 let loginContainer = document.getElementById("login-container"); // LOGIN <div id="login-container">...</div>
@@ -75,8 +85,8 @@ function Login() {
             if(data.user != null)
             {
                 let user = data.user[0];
-                
                 LoadInfoUser(user);
+                LoadExistingGames();
                 isLogged();
             }
         });

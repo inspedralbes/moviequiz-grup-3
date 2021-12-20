@@ -25,12 +25,13 @@ let userGameContainer = document.getElementById("user-game-container");
 let login_container = document.getElementById("login-container");
 let register_container = document.getElementById("register-container");
 let landing_container = document.getElementById("landing-container");
-let search_container = document.getElementById("Search");
+let search_container = document.getElementById("search-container");
 let game_container = document.getElementById("game-container");
 let loading_container = document.getElementById("loadingSpinner")
 let mymovies_container = document.getElementById("mymovies-container");
 let leaderboard_container = document.getElementById("leaderboard");
 
+landing_container.hidden = false;
 // BUTTON //
 
 let account_button = document.getElementById("account-button");
@@ -99,10 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 })});
 
-
-
-LoadGames();
-function LoadGames()
+function LoadExistingGames()
 {
     fetch(PATH + "php_files/loadUserGames.php")
         .then(res => res.json())

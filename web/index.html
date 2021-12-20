@@ -18,7 +18,8 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="#" id = "tardium-button" class="brand-logo">Tardium</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li id = "account-button" ><a href="#">SignUp/Register</a></li>
+                    <!-- <li id="account-button" ><a class="modal-trigger" href="#authentication-modal">SignUp/Register</a></li> -->
+                    <li id="account-button" ><a class="modal-trigger" href="#authentication-modal">SignUp/Register</a></li>
                     <li><a href="badges.html">Components</a></li>
                     <li><a href="collapsible.html">JavaScript</a></li>
                 </ul>
@@ -33,7 +34,99 @@
     </header>
     
     <main>
-        <div id="main-container"class="container" hidden>
+        <!--    AUTHENTICATION MODAL    -->
+        <div id="authentication-modal" class="modal">
+            <div class="right">
+                <a class="modal-close waves-effect waves-green btn-flat"><i class="material-icons">close</i></a>
+            </div>
+            <div class="modal-content">
+                <!--    lOGIN CONTAINER      -->
+                <div id="login-container" class="container" hidden>
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="email" type="text">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>  
+                            <div class="row">
+                                <div class="input-field col  s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <input id="password" type="password" class="validate">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" id="login-button" type="button" name="action">log in</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="center-align">Encara no tens un compte? <a id="open-register">Registra't</a></p>
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+                <!--    REGISTER CONTAINER      -->
+                <div id="register-container" class="container" hidden>
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <label for="reg-username">Name</label>
+                                    <input id="reg-username" type="text" class="" data-length="20">
+                                    <span class="helper-text" data-error="No és vàlid!" data-success="Vàlid!"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">email</i>
+                                    <label for="reg-email">Email</label>
+                                    <input id="reg-email" type="email" class="">
+                                    <span class="helper-text" data-error="Format d'email incorrecte!" data-success="Vàlid!"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col m6 s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <label for="reg-password">Password</label>
+                                    <input id="reg-password" type="password" class="">
+                                    <span class="helper-text" data-error="" data-success="Vàlid!"></span>
+                                </div>
+                                <div class="input-field col m6 s12">
+                                    <i class="material-icons prefix">lock</i>
+                                    <label for="reg-rpassword">Repeat password</label>
+                                    <input id="reg-rpassword" type="password" class="">
+                                    <span class="helper-text" data-error="" data-success=""></span>
+                                </div>
+                            </div>
+                            <p>
+                                <label>
+                                    <input type="checkbox" class="filled-in checkbox-purple" />
+                                    <span>I agree with all <a href="#">terms</a></span>
+                                </label>
+                            </p>
+                            <div class="row">
+                                <div class="col s12">
+                                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button"
+                                    id="register-button" name="action" disabled>Register</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div>
+                            <p class="center-align">Ja tens un compte? <a id="open-login">Inicia sessió</a></p>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!--    MAIN CONTAINER    -->
+        <div id="main-container"class="container">
             
             <!--    SIDE NAV    -->
             <ul id="slide-out" class="sidenav sidenav-close">
@@ -51,6 +144,7 @@
                 <li><a id="nav-games" href="#"><i class="material-icons">videogame_asset</i>Partides</a></li>
                 <li><a id="nav-search" href="#"><i class="material-icons">search</i>Buscador</a></li>
                 <li><a id="nav-my-movies" href="#"><i class="material-icons">movie_filter</i>Les Meves Pelicules</a></li>
+                <li><button class="btn btn-block waves-effect waves-light deep-purple lighten-1" id="log-out-button" type="button" name="action"><i class="material-icons">exit_to_app</i>Tancar sessió</button></li>
                 <li><a href="#!">Second Link</a></li>
                 <li><div class="divider"></div></li>
                 <li><a class="subheader">Subheader</a></li>
@@ -59,157 +153,9 @@
             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
 
-
-
-            <!--    LOG OUT AND USER INFO (DELETE)      -->
-            <div>
-                <button class="btn waves-effect waves-light deep-purple lighten-1" id="log-out-button" type="button" name="action">log out</button>
-                <div id="idValue"></div>
-                <div id="emailValue"></div>
-                <div id="usernameValue"></div>
-                <div id="scoreValue"></div>
-            </div>
-
-
-            <!--    SEARCH CONTAINER      -->
-            <div id='Search'>
-                <div class="">
-                    <div class="row">
-                        <div class="col s12 input-field"><input id="movie-input" type="text"></div>
-                            <div class="col s12">
-                                <button id="search" class="btn waves-effect waves-light deep-purple lighten-1" type="submit"
-                                    name="action">Search
-                                    <i class="material-icons right">search</i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div id="movie-container" class="row"></div>
-                    </div>
-                </div>
-            </div>
-
-        <div class="container" id="landing-container"> 
-            <div class="container" id="landing-carousel">
-                <h1 class="center">Tardium</h1>
-                <div class="container">
-                    <div class="carousel">
-                        <a class="carousel-item" href="#one!"><img  class = "item-img" src="https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg"></a>
-                        <a class="carousel-item" href="#two!"><img  class = "item-img" src="https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg"></a>
-                        <a class="carousel-item" href="#three!"><img class = "item-img" src="https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg"></a>
-                        <a class="carousel-item" href="#four!"><img class = "item-img" src="https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg"></a>
-                        <a class="carousel-item" href="#five!"><img class = "item-img" src="https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--    lOGIN CONTAINER      -->
-        <div id="login-container" class="container" hidden>
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">email</i>
-                            <input id="email" type="text">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>  
-                    <div class="row">
-                        <div class="input-field col  s12">
-                            <i class="material-icons prefix">lock</i>
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Password</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" id="login-button" type="button" name="action">log in</button>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="center-align">Encara no tens un compte? <a id="open-register">Registra't</a></p>
-                    </div> 
-                </form>
-            </div>
-        </div>
-
-
-
-
-        <!--    REGISTER CONTAINER      -->
-        <div class="container" id="register-container" hidden>
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">account_circle</i>
-                            <label for="reg-username">Name</label>
-                            <input id="reg-username" type="text" class="" data-length="20">
-                            <span class="helper-text" data-error="No és vàlid!" data-success="Vàlid!"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">email</i>
-                            <label for="reg-email">Email</label>
-                            <input id="reg-email" type="email" class="">
-                            <span class="helper-text" data-error="Format d'email incorrecte!" data-success="Vàlid!"></span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col m6 s12">
-                            <i class="material-icons prefix">lock</i>
-                            <label for="reg-password">Password</label>
-                            <input id="reg-password" type="password" class="">
-                            <span class="helper-text" data-error="" data-success="Vàlid!"></span>
-                        </div>
-                        <div class="input-field col m6 s12">
-                            <i class="material-icons prefix">lock</i>
-                            <label for="reg-rpassword">Repeat password</label>
-                            <input id="reg-rpassword" type="password" class="">
-                            <span class="helper-text" data-error="" data-success=""></span>
-                        </div>
-                    </div>
-                    <p>
-                        <label>
-                            <input type="checkbox" class="filled-in checkbox-purple" />
-                            <span>I agree with all <a href="#">terms</a></span>
-                        </label>
-                    </p>
-                    <div class="row">
-                        <div class="col s12">
-                            <button class="btn-block btn waves-effect waves-light deep-purple lighten-1" type="button"
-                            id="register-button" name="action" disabled>Register</button>
-                        </div>
-                    </div>
-                </form>
-                <div>
-                    <p class="center-align">Ja tens un compte? <a id="open-login">Inicia sessió</a></p>
-                </div> 
-            </div>
-        </div>
-
-
-
-
-        <!--    GAME SELECTOR CONTAINER      -->
-        <div class="container" id="game-container">  <!-- hidden -->
-            <div class="" id="user-games">
-            <h1 class="center">Les meves partides</h1>
-                <button class="btn-block btn waves-effect waves-light deep-purple lighten-1 modal-trigger" type="button"
-                                id="new-game-button" name="new-game-button" href="#question-modal">Crear joc</button>
-                <input id="game-name" type="text">
-                <h2>Llista de jocs</h2>
-                <div class="row" id="user-game-container">
-
-                </div>
-            </div>
-        </div>
-
-            <!--    LANDING CONTAINER      -->
-            <div class="container" id="landing-container">  <!-- hidden -->
-                <!-- <div class="container" id="landing-carousel">
+            <!--    CARRUSEL CONTAINER      -->
+            <div id="landing-container" class="container"> 
+                <div class="container" id="landing-carousel">
                     <h1 class="center">Tardium</h1>
                     <div class="container">
                         <div class="carousel">
@@ -220,11 +166,43 @@
                             <a class="carousel-item" href="#five!"><img class = "item-img" src="https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg"></a>
                         </div>
                     </div>
-                </div> -->
-                
+                </div>
+            </div>
 
 
+            <!--    SEARCH CONTAINER      -->
+            <div id='search-container' hidden>
+                <div class="">
+                    <div class="row">
+                        <div class="col s12 input-field"><input id="movie-input" type="text">
+                            <div class="col s12">
+                                <button id="search-button" class="btn waves-effect waves-light deep-purple lighten-1" type="submit"
+                                    name="action">Search<i class="material-icons right">search</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div id="movie-container" class="row"></div>
+                    </div>
+                </div>
+            </div>
 
+
+            <!--    GAME SELECTOR CONTAINER      -->
+            <div id="game-container" class="container">  <!-- hidden -->
+                <div class="" id="user-games">
+                <h1 class="center">Les meves partides</h1>
+                    <button class="btn-block btn waves-effect waves-light deep-purple lighten-1 modal-trigger" type="button"
+                                    id="new-game-button" name="new-game-button" href="#question-modal">Crear joc</button>
+                    <input id="game-name" type="text">
+                    <h2>Llista de jocs</h2>
+                    <div class="row" id="user-game-container">
+
+                    </div>
+                </div>
+            </div>
+            
 
             <!--    MODAL FOR QUESTIONS     -->
             <div id="question-modal" class="modal">
@@ -251,51 +229,49 @@
                     </div>
                 </div>
             </div>
-        </div>
-    
+            
+            <!--    LEADERBOARD CONTAINER   -->
+            <div id="leaderboard" class="container" hidden>
+                <button class="btn waves-effect waves-light deep-purple lighten-1" type="button" id="refresh_leaderboard"><i class="material-icons prefix">refresh</i></button>
+                <table class="ranking">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Avatar</th>
+                            <th>Usuari</th>
+                            <th>Puntuació</th>
+                        </tr>
+                    </thead>  
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
 
-        <!--    MY-FILMS CONTAINER      -->
-            <div class="container row" id="mymovies-container">
+
+            <!--    MY-MOVIES CONTAINER      -->
+            <div id="mymovies-container" class="container row" hidden>
                 
             </div>
-
-        <!--    LOADING CONTAINER      -->
-        <div class="container loading" id="loadingSpinner" hidden>
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-red-only">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="gap-patch">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
+    
+            <!--    LOADING CONTAINER      -->
+            <div id="loadingSpinner" class="container loading" hidden>
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-red-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
                     </div>
                 </div>
+                <div id="msgloading">Cargando...</div>
             </div>
-            <div id="msgloading">Cargando...</div>
-        </div>
-
-
-        <div class="container" id="leaderboard">
-            <button class="btn waves-effect waves-light deep-purple lighten-1" type="button" id="refresh_leaderboard"><i class="material-icons prefix">refresh</i></button>
-            <table class="ranking">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Avatar</th>
-                        <th>Usuari</th>
-                        <th>Puntuació</th>
-                    </tr>
-                </thead>  
-                <tbody>
-                </tbody>
-            </table>
         </div>
     </main>
-
-
 
 
     <!--    FOOTER CONTAINER      -->

@@ -1,5 +1,5 @@
 let input = document.getElementById(`movie-input`); 
-let searchButton = document.getElementById(`search`); 
+let searchButton = document.getElementById(`search-button`); 
 let container = document.getElementById(`movie-container`);
 
 searchButton.addEventListener(`click`,()=>{
