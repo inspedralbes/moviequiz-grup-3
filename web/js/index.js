@@ -12,6 +12,49 @@ function RemoveFavMovie(){
 //      CONTAINERS      //
 let mainContainer = document.getElementById("main-container");
 let userGameContainer = document.getElementById("user-game-container");
+let login_container = document.getElementById("login-container");
+let register_container = document.getElementById("register-container");
+let landing_container = document.getElementById("landing-container");
+let search_container = document.getElementById("Search");
+let game_container = document.getElementById("game-container");
+let loading_container = document.getElementById("loadingSpinner")
+
+// BUTTON //
+
+let account_button = document.getElementById("account-button");
+let tardium_button = document.getElementById("tardium-button");
+let nav_games = document.getElementById("nav-games");
+let nav_search = document.getElementById("nav-search");
+
+
+// FUNCIONALIDAD MENU NAV //
+function hideAll(){
+    userGameContainer.hidden = true;
+    login_container.hidden = true;
+    register_container.hidden = true;
+    landing_container.hidden = true;
+    search_container.hidden = true;
+    game_container.hidden = true;
+    loading_container.hidden = true;
+};
+// CLICK FUNCTIONS //
+account_button.addEventListener('click',function(){
+    hideAll();
+    login_container.hidden = false;
+})
+tardium_button.addEventListener('click',function(){
+    hideAll();
+    landing_container.hidden = false;
+})
+nav_games.addEventListener('click',function(){
+    hideAll();
+    game_container.hidden = false;
+})
+nav_search.addEventListener('click',function(){
+    hideAll();
+    search_container.hidden = false;
+})
+
 
 //      TODOS LOS ELEMENTOS QUE VAN A CONTENER EL INFO DEL USUARIO EN EL SIDENAV      //
 let usernameElements = document.getElementsByClassName("text-username");
