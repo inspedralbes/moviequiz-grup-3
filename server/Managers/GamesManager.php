@@ -145,7 +145,7 @@ class GamesManager extends DBConnection
 
     public function PlayExistingGame()
     {
-        //before button
+        
     }
 
     //      FUNCTION THAT GENERATES THE ANSWERS' ARRAY      //

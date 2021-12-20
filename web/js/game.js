@@ -40,19 +40,24 @@ buttonNewGame.addEventListener("click", () => {
     fetch(PATH + "php_files/games.php")
     .then(res => res.json())
     .then(data => {
-        modalGame.hidden = false;
-        modalEndGame.hidden = true;
-        games_json = null;
-        results_json = {
-            "pressed": [],
-            "name": gameNameInput.value,
-            "score": 0
-        }
-        games_json = data[0];
-        movieCounter = 0;
-        LoadMovieIntoModal(games_json[movieCounter]);
+        StartGame(data);
     });
 });
+
+function StartGame(data)
+{
+    modalGame.hidden = false;
+    modalEndGame.hidden = true;
+    games_json = null;
+    results_json = {
+        "pressed": [],
+        "name": "",//gameNameInput.value,
+        "score": 0
+    }
+    games_json = data[0];
+    movieCounter = 0;
+    LoadMovieIntoModal(games_json[movieCounter]);
+}
 
 function LoadMovieIntoModal(movieInfo)
 {

@@ -113,6 +113,8 @@ function LoadGames()
             {
                 userGameContainer.innerHTML='';
                 data.forEach(game => {
+
+
                     /////* CARD */////
                     let column = document.createElement('div');
                     column.classList.add("col","s12","m6","l3");
@@ -141,12 +143,13 @@ function LoadGames()
                     btn.id = "btn-play";
                     btn.innerText = "Jugar";
                     btn.addEventListener("click",() => {
-                        fetch(PATH + "php_files/playGame.php",
-                            { method: 'POST', body: "" })
-                            .then(res => res.json())
-                            .then(data => {
-                                console.log(data);
-                            });
+                        StartGame(JSON.stringify(game.games_json));
+                        // fetch(PATH + "php_files/playGame.php",
+                        //     { method: 'POST', body: gameData })
+                        //     .then(res => res.json())
+                        //     .then(data => {
+                        //         console.log(data);
+                        //     });
                         }
                     );
                     cardContent.append(gameTitleContent, btn);
