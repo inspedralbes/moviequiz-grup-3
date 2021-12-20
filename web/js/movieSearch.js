@@ -15,7 +15,7 @@ searchButton.addEventListener(`click`,()=>{
             {
                 /////* CARD */////
                 let column = document.createElement('div');
-                column.classList.add("col","s12","m6","l4");
+                column.classList.add("col","s12","m6","l3");
                 
                 let card = document.createElement('div');
                 card.classList.add("card");
@@ -36,7 +36,6 @@ searchButton.addEventListener(`click`,()=>{
                 movieTitleContent.classList.add("card-title","activator","grey-text","text-darken-4", "card-footer-size", "center");
                 movieTitleContent.innerHTML = movie.Title;
                 
-
                 /////* CARD REVEAL */////
                 let cardReveal = document.createElement('div');
                 cardReveal.classList.add('card-reveal');

@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
+LoadGames();
 function LoadGames()
 {
     fetch(PATH + "php_files/loadUserGames.php")
@@ -115,30 +115,27 @@ function LoadGames()
                     column.classList.add("col","s12","m6","l3");
         
                     let card = document.createElement('div');
-                    card.classList.add("game-card");
+                    card.classList.add("card");
     
                     /////* CARD IMAGE */////
                     let cardImage = document.createElement('div');
-                    cardImage.classList.add("game-card-image","waves-effect","waves-block","waves-light");
+                    cardImage.classList.add("card-image","waves-effect","waves-block","waves-light");
                     
                     let imageElement = document.createElement('img');
                     imageElement.classList.add("card-image-size");
-                    imageElement.src = "../img/defaultUserImage.png";
+                    imageElement.src = "../img/game_icon.svg";
         
                     /////* CARD CONTENT */////
                     let cardContent = document.createElement('div');
-                    cardContent.classList.add("game-card-content");
+                    cardContent.classList.add("card-content", "center");
         
                     let gameTitleContent = document.createElement('span');
-                    gameTitleContent.classList.add("game-card-title","grey-text","text-darken-4", "card-footer-size", "center");
+                    gameTitleContent.classList.add("card-title","grey-text","text-darken-4", "card-footer-size", "center");
                     gameTitleContent.innerHTML = game.name;
-        
-                    let icon = document.createElement('i');
-                    icon.classList.add("material-icons", "prefix");
-                    icon.innerHTML = "videogame_asset";
         
                     let btn = document.createElement('button');
                     btn.classList.add("btn","waves-effect", "waves-light", "red", "lighten-1");
+                    btn.id = "btn-play";
                     btn.innerText = "Jugar";
                     btn.addEventListener("click",() => {
                         fetch(PATH + "php_files/playGame.php",
@@ -149,9 +146,7 @@ function LoadGames()
                             });
                         }
                     );
-    
-                    gameTitleContent.append(btn, icon);
-                    cardContent.append(gameTitleContent);
+                    cardContent.append(gameTitleContent, btn);
                     cardImage.append(imageElement);
                     card.append(cardImage, cardContent);
                     column.append(card);
