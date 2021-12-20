@@ -14,3 +14,8 @@
         $data = $GamesManager->selectUserGames();
         echo json_encode($data);
     }
+    else
+    {
+        $data = array();
+        echo json_encode($data);
+    }
