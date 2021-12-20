@@ -29,6 +29,7 @@ let search_container = document.getElementById("Search");
 let game_container = document.getElementById("game-container");
 let loading_container = document.getElementById("loadingSpinner")
 let mymovies_container = document.getElementById("mymovies-container");
+let leaderboard_container = document.getElementById("leaderboard");
 
 // BUTTON //
 
@@ -49,6 +50,7 @@ function hideAll(){
     game_container.hidden = true;
     loading_container.hidden = true;
     mymovies_container.hidden = true;
+    leaderboard_container.hidden = true;
 };
 // CLICK FUNCTIONS //
 account_button.addEventListener('click',function(){
@@ -62,6 +64,7 @@ tardium_button.addEventListener('click',function(){
 nav_games.addEventListener('click',function(){
     hideAll();
     game_container.hidden = false;
+    leaderboard_container.hidden = false;
 })
 nav_search.addEventListener('click',function(){
     hideAll();
