@@ -108,6 +108,14 @@ class MoviesManager extends DBConnection{
         $this->multiple_query();
         return $this->rows;
     }
+    public function selectCarrusel()
+    {
+        // TODO: Implement selectAll() method.
+        /*========We select the account we want==========*/
+        $this->query="SELECT img_path FROM movies ORDER BY rating DESC LIMIT 5;";
+        $this->multiple_query();
+        return $this->rows;
+    }
     public function select()
     {
         // TODO: Implement select() method.

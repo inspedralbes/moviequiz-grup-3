@@ -18,6 +18,27 @@ let usernameElements = document.getElementsByClassName("text-username");
 let emailElements = document.getElementsByClassName("text-email");
 let scoreElements = document.getElementsByClassName("text-score");
 
+//CAROUSEL LANDING
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var item = document.getElementsByClassName("item-img");
+    fetch(PATH + "php_files/carrusel.php")
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        for (let i = 0; i < item.length; i++) {
+            const element = item[i];
+            element.src = data[i].img_path;
+        }
+    M.Carousel.init(elems,{
+        padding : 50,
+        dist : -200
+    });
+})});
+
+
+
+
 
 // VA, HAGO LA LISTA DE PELICULAS VA.
 fetch(PATH + "php_files/loadUserGames.php")
@@ -30,7 +51,6 @@ fetch(PATH + "php_files/loadUserGames.php")
             /////* CARD */////
             let column = document.createElement('div');
             column.classList.add("col","s12","m6","l4");
-         
             let card = document.createElement('div');
             card.classList.add("game-card");
 
