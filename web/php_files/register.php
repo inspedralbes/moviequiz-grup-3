@@ -35,6 +35,6 @@
         /*========We call the database to receive the account==========*/
         $GLOBALS['AccountManager']->setUid(uniqid("", true));
         $GLOBALS['AccountManager']->insert();
-	return array("error" => false);
+	    return array("error" => false);
     }
 ?>

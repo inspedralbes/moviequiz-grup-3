@@ -40,7 +40,8 @@ buttonNewGame.addEventListener("click", () => {
     fetch(PATH + "php_files/games.php")
     .then(res => res.json())
     .then(data => {
-        StartGame(data);
+        console.log(data);
+        //StartGame(data);
     });
 });
 

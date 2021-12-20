@@ -56,6 +56,7 @@ function hideAll(){
 // CLICK FUNCTIONS //
 account_button.addEventListener('click',function(){
     hideAll();
+    landing_container.hidden = false;
     login_container.hidden = false;
 })
 tardium_button.addEventListener('click',function(){
@@ -137,11 +138,12 @@ function LoadExistingGames()
                     gameTitleContent.innerHTML = game.name;
         
                     let btn = document.createElement('button');
-                    btn.classList.add("btn","waves-effect", "waves-light", "red", "lighten-1");
+                    btn.classList.add("btn","waves-effect", "waves-light", "deep-purple", "lighten-1");
                     btn.id = "btn-play";
                     btn.innerText = "Jugar";
                     btn.addEventListener("click",() => {
-                        StartGame(JSON.stringify(game.games_json));
+                        console.log(game.games_json);
+                        //StartGame(JSON.stringify(game.games_json));
                         // fetch(PATH + "php_files/playGame.php",
                         //     { method: 'POST', body: gameData })
                         //     .then(res => res.json())

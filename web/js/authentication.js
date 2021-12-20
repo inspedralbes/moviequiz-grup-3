@@ -18,8 +18,8 @@ window.onload = function() {
 }
 
 //      MODAL INITIALIZATION        //
+let authModal = document.querySelector('#authentication-modal');
 document.addEventListener('DOMContentLoaded', function () {
-    var authModal = document.querySelector('#authentication-modal');
     M.Modal.init(authModal, {
         dismissible: false,
         opacity: 0.7,
@@ -81,10 +81,10 @@ function Login() {
         .then(res => res.json())
         .then(data => {
             /*==========response we recive from server==========*/
-            console.log(data);
             if(data.user != null)
             {
                 let user = data.user[0];
+                authModal.M_Modal.close();
                 LoadInfoUser(user);
                 LoadExistingGames();
                 isLogged();
@@ -143,7 +143,10 @@ function Register() {
         .then(res => res.json())
         .then(data => {
             /*==========response we recive from server==========*/
-            console.log(data);
+            if(data.error == false)
+            {
+                SwapSignUp();
+            }
     });
 }
 /*========== Errors ==========*/
