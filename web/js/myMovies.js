@@ -13,7 +13,7 @@ mYfilms_btn.addEventListener(`click`, () => {
             data.forEach(movie => {
                 /////* CARD */////
                 let column = document.createElement('div');
-                column.classList.add("col", "s12", "m6", "l4");
+                column.classList.add("col", "s12", "m6", "l3");
 
                 let card = document.createElement('div');
                 card.classList.add("card");
