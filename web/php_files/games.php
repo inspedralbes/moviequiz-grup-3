@@ -9,5 +9,13 @@
     $GamesManager = new GamesManager();
 
     /*========We call the database to recive the account==========*/
-    $data = $GamesManager->CreateGame();
+    if(isset($_POST["game_json"]))
+    {
+        $_SESSION["curretGameId"] = $_POST["id_game"];
+        $data = $GamesManager->PlayExistingGame($_POST["game_json"]);
+    }
+    else
+    {
+        $data = $GamesManager->CreateGame();
+    }
     echo json_encode($data);

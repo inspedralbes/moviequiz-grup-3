@@ -14,5 +14,12 @@
     $GamesManager = new GamesManager();
     
     /*========We call the database to recive the account==========*/
-    $data = $GamesManager->InsertGame($games_json, $results_json);
+    if($_POST["new_game"] == "true")
+    {
+        $data = $GamesManager->InsertGame($games_json, $results_json);
+    }
+    else
+    {
+        $data = $GamesManager->UpdateGame($games_json, $results_json);
+    }
     echo json_encode($data);

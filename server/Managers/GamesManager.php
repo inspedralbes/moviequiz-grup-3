@@ -6,6 +6,7 @@ class GamesManager extends DBConnection
     private $gameInDb = null;
     private $games = null;
     private $results = null;
+    private $id_game = null;
     //      ARRAY FOR CREATING YEARS' ARRAY     //
     private $addToYears = array(-15 , -10 , -5 , -2  , 2 , 5 , 10 ,15);
 
@@ -48,20 +49,13 @@ class GamesManager extends DBConnection
         return $this->rows;
     }
 
-    //      SELECT SINGLE GAME     //
-    public function selectGame(): array
-    {
-        $this->query="SELECT * FROM games WHERE id_user='{$_SESSION['uid']}' AND games_json='{$this->games}';";
-        $this->multiple_query();
-        return $this->rows;
-    }
-
     //      INSERT GAMES' JSON INTO GAMES' TABLE     //
     public function insert()
     {
         $name = json_decode($this->results, true);
-        $this->query="INSERT INTO games (id_user, name, games_json, results_json)
-        VALUES('{$_SESSION['uid']}', '{$name['name']}', '{$this->games}', '{$this->results}');";
+        $idGame = uniqid("", true);
+        $this->query="INSERT INTO games (id_game, id_user, name, games_json, results_json)
+        VALUES('{$idGame}', '{$_SESSION['uid']}', '{$name['name']}', '{$this->games}', '{$this->results}');";
         $this->single_query();
     }
 
@@ -78,12 +72,12 @@ class GamesManager extends DBConnection
     }
 
     //      UPDATE FROM A GAME     //
-    public function updateScore($id_game, $results)
+    public function updateScore($results)
     {
         // TODO: Implement update() method.
         $this->query="UPDATE games 
         SET results_json = '{$results}'
-        WHERE id_game='{$id_game}';";
+        WHERE id_game='{$_SESSION["curretGameId"]}';";
         $this->single_query();
     }
 
@@ -105,6 +99,22 @@ class GamesManager extends DBConnection
         return array($result);
     }
 
+    function PlayExistingGame($data, )
+    {
+        $jsonData = json_decode($data);
+        return $jsonData;
+        $result = array();
+        for ($i = 0; $i < count($jsonData); $i++)
+        {
+            array_push($result, [
+                "id_movie" => $jsonData[$i]["id_movie"],
+                "title" => $jsonData[$i]["title"],
+                "poster" => $jsonData[$i]["img_path"],
+                "years" => $jsonData[$i]["year"]
+            ]);
+        }
+        return array($result);
+    }
 
     //      FUNCTION THAT INSERT THE GAME DATA INTO GAMES' TABLE    //
     public function InsertGame($games_json, $results_json): array
@@ -129,23 +139,33 @@ class GamesManager extends DBConnection
                 $score++;
             }
         }
-        $game = json_decode(implode($this->selectGame()), true);
-        if(!empty($game))
-        {
-            //      UPDATE SCORE IN THE DATABASE      //
-            $this->updateScore($game["id_game"], $results_json);
-        }
-        else
-        {
-            //      INSERT NEW GAME     //
-            $this->insert();
-        }
+        $this->insert();
         return array("score" => $score);
     }
-
-    public function PlayExistingGame()
+    public function UpdateGame($games_json, $results_json)
     {
-        
+        $this->games = $games_json;
+        $this->results = $results_json;
+        $score = 0;
+
+        //      CALCULATE THE SCORE     //
+        $tmp_games = json_decode($this->games, true);
+        $tmp_results = json_decode($this->results, true);
+        $ids = array();
+        for ($i=0; $i < count($tmp_games); $i++)
+        {
+            array_push($ids, $tmp_games[$i]["id_movie"]);
+        }
+        $goodYears = $this->selectMovieYears($ids);
+        for ($i=0; $i < count($tmp_games); $i++)
+        {
+            if($tmp_results['pressed'][$i] == $goodYears[$i]["year"])
+            {
+                $score++;
+            }
+        }
+        $this->updateScore(json_encode($tmp_results));
+        return array("score" => $score);
     }
 
     //      FUNCTION THAT GENERATES THE ANSWERS' ARRAY      //

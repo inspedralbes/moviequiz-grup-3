@@ -12,8 +12,8 @@ window.onload = function() {
         }    
         else
         {
-            loginContainer.hidden = false;
-        }   
+            isNotLogged();
+        }
     });
 }
 
@@ -91,7 +91,7 @@ function Login() {
             }
             else
             {
-                // MANDA MENSAJE DE ERROR  DE LOGIN
+                // MANDA MENSAJE DE ERROR DE LOGIN
             }
         });
 }
@@ -239,9 +239,12 @@ function LogOut(){
     .then(res => res.json())
     .then(data => {
         /*==========response we recive from server==========*/
-            console.log(data);
-            loginContainer.hidden = false;
+        hideAll();
+        landing_container.hidden = false;
+        ResetUserData();
+        isNotLogged();
     });
+
 }
 //#endregion
 
@@ -264,10 +267,23 @@ function isEmpty(input){
 
 /*==========function called when you log-in ==========*/
 function isLogged(){
+    signup_button.style.display = "none";
+    logOutButton.style.display = "inline";
     loginContainer.hidden = true;
     mainContainer.hidden = false;
+    nav_games.hidden = false;
+    nav_search.hidden = false;
+    nav_mymovies.hidden = false;
+    nav_leaderboard.hidden = false;
 }
-
-
+function isNotLogged(){
+    signup_button.style.display = "inline";
+    logOutButton.style.display = "none";
+    loginContainer.hidden = false;
+    nav_games.hidden = true;
+    nav_search.hidden = true;
+    nav_mymovies.hidden = true;
+    nav_leaderboard.hidden = true;
+}
 
 

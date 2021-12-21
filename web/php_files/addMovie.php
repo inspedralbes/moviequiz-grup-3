@@ -18,5 +18,9 @@
     $MoviesManager->setimg_path($imgPath);
     //$MoviesManager->setRating();
     /*========We call the database to recive the account==========*/
-    $data = $MoviesManager->AddMovie();
+    if($_POST["type"] == 'add')
+        $data = $MoviesManager->AddMovie();
+    else if($_POST["type"] == 'remove')
+        $data = $MoviesManager->RemoveMovie();
     echo json_encode($data);
+    //echo json_encode(array("id" => $mid, "title" => $title, "year" => $year, "path" => $imgPath));

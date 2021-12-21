@@ -28,23 +28,23 @@ let landing_container = document.getElementById("landing-container");
 let search_container = document.getElementById("search-container");
 let game_container = document.getElementById("game-container");
 let loading_container = document.getElementById("loadingSpinner")
-let mymovies_container = document.getElementById("mymovies-container");
+let mymovies_container = document.getElementById("fav-movies");
 let leaderboard_container = document.getElementById("leaderboard");
 
 landing_container.hidden = false;
 // BUTTON //
-
+const signup_button = document.getElementById("signup-button");
 let account_button = document.getElementById("account-button");
 let tardium_button = document.getElementById("tardium-button");
 let nav_games = document.getElementById("nav-games");
 let nav_search = document.getElementById("nav-search");
 let nav_mymovies = document.getElementById("nav-my-movies");
+let nav_leaderboard = document.getElementById("nav-leaderboard");
 
 
 // FUNCIONALIDAD MENU NAV //
 function hideAll(){
     userGameContainer.hidden = true;
-    login_container.hidden = true;
     register_container.hidden = true;
     landing_container.hidden = true;
     search_container.hidden = true;
@@ -54,11 +54,6 @@ function hideAll(){
     leaderboard_container.hidden = true;
 };
 // CLICK FUNCTIONS //
-account_button.addEventListener('click',function(){
-    hideAll();
-    landing_container.hidden = false;
-    login_container.hidden = false;
-})
 tardium_button.addEventListener('click',function(){
     hideAll();
     landing_container.hidden = false;
@@ -66,7 +61,7 @@ tardium_button.addEventListener('click',function(){
 nav_games.addEventListener('click',function(){
     hideAll();
     game_container.hidden = false;
-    leaderboard_container.hidden = false;
+    userGameContainer.hidden = false;
 })
 nav_search.addEventListener('click',function(){
     hideAll();
@@ -75,6 +70,10 @@ nav_search.addEventListener('click',function(){
 nav_mymovies.addEventListener('click',function(){
     hideAll();
     mymovies_container.hidden = false;
+})
+nav_leaderboard.addEventListener("click", () => {
+    hideAll();
+    leaderboard_container.hidden = false;
 })
 
 
@@ -90,14 +89,15 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(PATH + "php_files/carrusel.php")
     .then(res => res.json())
     .then(data => {
-        console.log(data);
-        for (let i = 0; i < item.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             const element = item[i];
-            element.src = data[i].img_path;
+            element.src = data[i]["img_path"];
+
         }
     M.Carousel.init(elems,{
-        padding : 50,
+        padding : 140,
         dist : -200,
+        numVisible: 10,
         fullWidth: true
     });
 })});
@@ -107,14 +107,10 @@ function LoadExistingGames()
     fetch(PATH + "php_files/loadUserGames.php")
         .then(res => res.json())
         .then(data => {
-            console.log(data)
-            userGameContainer.innerHTML='';
             if(data != null)
             {
                 userGameContainer.innerHTML='';
                 data.forEach(game => {
-
-
                     /////* CARD */////
                     let column = document.createElement('div');
                     column.classList.add("col","s12","m6","l3");
@@ -138,19 +134,24 @@ function LoadExistingGames()
                     gameTitleContent.classList.add("card-title","grey-text","text-darken-4", "card-footer-size", "center");
                     gameTitleContent.innerHTML = game.name;
         
-                    let btn = document.createElement('button');
-                    btn.classList.add("btn","waves-effect", "waves-light", "deep-purple", "lighten-1");
+                    let btn = document.createElement('a');
+                    btn.classList.add("btn","waves-effect", "waves-light", "deep-purple", "lighten-1", "modal-trigger");
                     btn.id = "btn-play";
+                    btn.href = "#question-modal";
                     btn.innerText = "Jugar";
                     btn.addEventListener("click",() => {
-                        console.log(game.games_json);
-                        //StartGame(JSON.stringify(game.games_json));
-                        // fetch(PATH + "php_files/playGame.php",
-                        //     { method: 'POST', body: gameData })
-                        //     .then(res => res.json())
-                        //     .then(data => {
-                        //         console.log(data);
-                        //     });
+                        let gameData = new FormData();
+                        gameData.append('game_json', game.games_json);
+                        gameData.append('id_game', game.id_game);
+                        fetch(PATH + "php_files/games.php",
+                            { method: 'POST', body: gameData })
+                            .then(res => res.json())
+                            .then(data => {
+                                if(data != null)
+                                {
+                                    StartExistingGame(data, game.results_json);
+                                }
+                            });
                         }
                     );
                     cardContent.append(gameTitleContent, btn);
@@ -173,5 +174,17 @@ function LoadInfoUser(user){
     }
     for (var i = 0; i < scoreElements.length; i++) {
         scoreElements[i].innerHTML = user.score;
+    }
+}
+
+function ResetUserData(){
+    for (var i = 0; i < usernameElements.length; i++) {
+        usernameElements[i].innerHTML = "Convidat/ada";
+    }
+    for (var i = 0; i < emailElements.length; i++) {
+        emailElements[i].innerHTML = "";
+    }
+    for (var i = 0; i < scoreElements.length; i++) {
+        scoreElements[i].innerHTML = "---";
     }
 }

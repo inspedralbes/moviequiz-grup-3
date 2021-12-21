@@ -8,6 +8,7 @@ class MoviesManager extends DBConnection{
     private $year = null;
     private $img_path = null;
     private $rating = null;
+    private $comment = null;
 
     #region magical functions
     public function  __construct()
@@ -96,6 +97,22 @@ class MoviesManager extends DBConnection{
     {
         $this->rating = $rating;
     }
+
+    /**
+     * @return null
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param null $comment
+     */
+    public function setComment($comment): void
+    {
+        $this->comment = $comment;
+    }
     #endregion
 
     /////////SQL FUNCTIONS///////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,7 +135,7 @@ class MoviesManager extends DBConnection{
     {
         // TODO: Implement selectAll() method.
         /*========We select the account we want==========*/
-        $this->query="SELECT img_path FROM movies ORDER BY rating DESC LIMIT 5;";
+        $this->query="SELECT img_path FROM movies ORDER BY rating DESC LIMIT 10;";
         $this->multiple_query();
         return $this->rows;
     }
@@ -152,7 +169,21 @@ class MoviesManager extends DBConnection{
         $this->query="INSERT INTO feedbacks (id_movie, id_user) VALUES('{$this->mid}', '{$_SESSION['uid']}');";
         $this->single_query();
     }
-
+    public function updateFeedback()
+    {
+        // TODO: Implement update() method.
+        $this->query="UPDATE feedbacks 
+        SET rating='{$this->rating}', comment='{$this->comment}'
+        WHERE id_user='{$_SESSION['uid']}' AND id_movie='{$this->mid}';";
+        $this->single_query();
+    }
+    public function updateAverageRating()
+    {
+        $this->query="UPDATE movies 
+        SET rating=(SELECT AVG(rating) FROM feedbacks WHERE id_movie='{$this->mid}' AND rating IS NOT NULL)
+        WHERE id_movie='{$this->mid}';";
+        $this->single_query();
+    }
     public function update()
     {
         // TODO: Implement update() method.
@@ -188,14 +219,24 @@ class MoviesManager extends DBConnection{
                 $this->insertFeedback();
                 return array("info" => "Insertar solo en feedbacks");
             }
-            else{
-                $this->delete();
-                return array("info" => "Fuera de favoritos");
-            }
         }
     }
+    public function RemoveMovie()
+    {
+        $this->delete();
+        $this->updateAverageRating();
+        return array("info" => "Fuera de favoritos");
+    }
 
-
+    public function UpdateMovieFeedback()
+    {
+        $this->updateFeedback();
+        if($this->rating != null)
+        {
+            $this->updateAverageRating();
+        }
+        return array("allok" => true);
+    }
 }
 
 ?>

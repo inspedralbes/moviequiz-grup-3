@@ -3,6 +3,8 @@ let leaderboardSection = document.getElementById("leaderboard");
 let loadLeaderboard = leaderboardSection.querySelector("button");
 let table = leaderboardSection.querySelector("table");
 
+LoadLeaderboard();
+
 loadLeaderboard.addEventListener('click',() => {
     LoadLeaderboard();
 });
@@ -13,8 +15,7 @@ function LoadLeaderboard()
     fetch(PATH + "php_files/leaderboard.php")
     .then(res => res.json())
     .then(data => 
-        { 
-            console.log(data);
+        {
             body = table.querySelector("tbody");
             body.innerHTML = "";
             for (let i = 0; i < data.length; i++) {

@@ -83,3 +83,10 @@ blockquote{
 #btn-play {
   width: 100% !important;
 }
+nav a.sidenav-trigger {
+  display: inline !important;
+}
+
+.brand-logo{
+  margin: auto;
+}
