@@ -97,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     M.Carousel.init(elems,{
         padding : 50,
-        dist : -200
+        dist : -200,
+        fullWidth: true
     });
 })});
 

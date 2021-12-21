@@ -84,10 +84,14 @@ function Login() {
             if(data.user != null)
             {
                 let user = data.user[0];
-                authModal.M_Modal.close();
                 LoadInfoUser(user);
                 LoadExistingGames();
+                authModal.M_Modal.close(); // CIERRA EL MODAL
                 isLogged();
+            }
+            else
+            {
+                // MANDA MENSAJE DE ERROR  DE LOGIN
             }
         });
 }
@@ -237,7 +241,6 @@ function LogOut(){
         /*==========response we recive from server==========*/
             console.log(data);
             loginContainer.hidden = false;
-            mainContainer.hidden = true;
     });
 }
 //#endregion
