@@ -8,7 +8,7 @@
     /*========We create the GamesManager Object==========*/
     $GamesManager = new GamesManager();
 
-    /*========We call the database to recive the account==========*/
+    /*========We call the database to play a game==========*/
     if(isset($_POST["game_json"]))
     {
         $_SESSION["curretGameId"] = $_POST["id_game"];

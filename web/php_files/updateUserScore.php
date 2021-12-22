@@ -6,9 +6,9 @@
     require_once(__DIR__ . "/../../server/Managers/AccountManager.php");
 
     $score = $_POST['score'];
-    /*========We create the GamesManager Object==========*/
+    /*========We create the AccountManager Object==========*/
     $AccountManager = new AccountManager();
 
-    /*========We call the database to recive the account==========*/
+    /*========We call the database to update the score==========*/
     $data = $AccountManager->updateUserScore($score);
     echo json_encode($data);

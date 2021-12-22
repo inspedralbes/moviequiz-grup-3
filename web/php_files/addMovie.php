@@ -9,18 +9,16 @@
     $title = $_POST["title"];
     $year = $_POST["year"];
     $imgPath = $_POST["imgPath"];
-    /*========We create the AccountManager Object==========*/
+    /*========We create the MoviesManager Object==========*/
     $MoviesManager = new MoviesManager();
-    /*========Set values to AccountManager==========*/
+    /*========Set values to MoviesManager==========*/
     $MoviesManager->setMid($mid);
     $MoviesManager->setTitle($title);
     $MoviesManager->setYear($year);
     $MoviesManager->setimg_path($imgPath);
-    //$MoviesManager->setRating();
-    /*========We call the database to recive the account==========*/
+    /*========We call the database to add/remove the movie==========*/
     if($_POST["type"] == 'add')
         $data = $MoviesManager->AddMovie();
     else if($_POST["type"] == 'remove')
         $data = $MoviesManager->RemoveMovie();
     echo json_encode($data);
-    //echo json_encode(array("id" => $mid, "title" => $title, "year" => $year, "path" => $imgPath));

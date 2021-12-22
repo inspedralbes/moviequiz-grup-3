@@ -7,11 +7,11 @@
 
 
 
-    /*========We create the AccountManager Object==========*/
+    /*========We create the MoviesManager Object==========*/
     $MoviesManager = new MoviesManager();
     $MoviesManager->setMid($_POST["id_movie"]);
     $MoviesManager->setComment($_POST["comment"]);
     $MoviesManager->setRating($_POST["rating"]);
-    /*========We call the database to recive the account==========*/
+    /*========We call the database to update the feedback==========*/
     $data = $MoviesManager->UpdateMovieFeedback();
     echo json_encode($data);
