@@ -99,7 +99,7 @@ class GamesManager extends DBConnection
         return array($result);
     }
 
-    function PlayExistingGame($data, )
+    function PlayExistingGame($data)
     {
         $jsonData = json_decode($data);
         return $jsonData;
