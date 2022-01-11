@@ -1,16 +1,49 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6494315&assignment_repo_type=AssignmentRepo)
-# transversals
-Esquema mínim de carpetes pels projectes transversals
+# Movie Quiz 3
 
-És obligatori seguir aquesta estructura tot i que la podeu ampliar.
+## Integrants
+- Albert Chao
+- Eric Clemente
+- Arnau Orts
 
-## Atenció
-Un cop comenceu heu de canviar aquesta explicació amb la corresponent al vostre projecte (utilitzant markdown)
+## Descripció
+Aquest és el segon projecte transversal de 2n DAW. Fem una pàgina web en format *Single Page Application* (SPA).
 
+Utilitzem una base de dades en *mysql* al labs, en la qual tenim tota la informació d'usuaris, pel·lícules, els feedbacks que afegeixen els usuaris i els jocs.
 
-# Aquest fitxer ha de contenir com a mínim:
- * Nom dels integrants
- * Nom del projecte
- * Petita descripció
- * URL de producció (quan la tingueu)
- * Estat: (explicació de en quin punt està)
+## Esquema de carpetes
+- /seguiment: conté les actes
+
+- /server
+
+    Té els arxius de la connexió amb la base de dades.
+
+    - /Managers: on estan tots els arxius de control, amb les funcions que executen els comandos a la base de dades.
+
+    - /sql: conté l'arxiu de creació de la base de dades amb els inserts.
+
+- /web
+
+    És l'arrel de la web, on està l'index.html i el basic.css.
+
+    - /img: on estan totes les imatges necessàries de la web **(les de les pel·lícules no)**
+
+    - /js: on es troben tots els arxius javascript que es criden desde l'index.html.
+
+    - /php_files: tots els arxius als quals els js fan fetch, per a que es posin en contacte amb el manager pertinent del servidor.
+
+## Estat actual
+- Login i registre (**funcionant**, falta UX en login)
+- Cercador de pel·lícules (**funcionant**)
+- Afegir i treure de favorits (**funcionant**, falta UX)
+- Joc (**funcionant**, només un nou joc)
+
+### Links
+- [Web Movie Quiz](http://moviequiz3.alumnes.inspedralbes.cat)
+- [GitHub](https://github.com/inspedralbes/moviequiz-grup-3)
+
+# **Informació important**
+Hi ha 2 usuaris creats per defecte.
+|      usuari      | contrasenya |
+|------------------|-------------|
+| pedralbes@gmail.com | pedralbes |
+| ausias@gmail.com | ausias1 |

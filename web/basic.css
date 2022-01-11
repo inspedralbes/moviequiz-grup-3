@@ -1,0 +1,92 @@
+:root{
+  --base-color: #7e57c2;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.answer-button {
+  width: 22em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.card-image-size{
+  width: 100px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.card-footer-size{
+  height: 60px;
+}
+
+/*robao de internet claramente*/
+.checkbox-purple[type="checkbox"].filled-in:checked + span:not(.lever):after {
+  border: 2px solid var(--base-color);
+  background-color: var(--base-color);
+}
+.loading {
+  padding: 100px;
+  text-align: center;
+}
+/* cambia el color de la label al seleccionar el input */
+.input-field input:focus + label {
+  color: var(--base-color) !important;
+}
+/* cambia el color de la "underline" al seleccionar el input */
+.row .input-field input:focus {
+  border-bottom: 1px solid var(--base-color) !important;
+  box-shadow: 0 1px 0 0 var(--base-color) !important
+}
+/* Cambia el color del icono al seleccionar el input */
+.input-field .prefix.active {
+  color: var(--base-color);
+}
+/* Cambia la anchura y altura del modal */
+.modal {
+  width: 75% !important;
+  max-height: 100% !important;
+}
+
+table.ranking>tbody>tr:nth-child(1) {
+  background-color: rgba(255, 208, 0, 0.2);
+}
+table.ranking>tbody>tr:nth-child(2) {
+  background-color: rgba(190, 190, 190, 0.2);
+}
+table.ranking>tbody>tr:nth-child(3) {
+  background-color: rgba(199, 80, 0, 0.2)   
+}
+
+.round_img {
+  border-radius: 50%;
+}
+blockquote{
+  border-left: 5px solid #7e57c2 !important;
+}
+
+#btn-play {
+  width: 100% !important;
+}
+nav a.sidenav-trigger {
+  display: inline !important;
+}
+
+.brand-logo{
+  margin: auto;
+}
